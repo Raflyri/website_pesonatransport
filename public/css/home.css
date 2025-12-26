@@ -1,0 +1,48 @@
+/* Hero Section dengan Gradient Biru */
+.hero-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Floating Search Box (Ciri khas rental) */
+.search-box-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    margin-top: -50px; /* Efek overlap ke hero */
+    position: relative;
+    z-index: 10;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-accent);
+    margin: 10px auto;
+}
+
+/* Card Mobil */
+.car-card {
+    border: none;
+    transition: transform 0.3s;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.car-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+.car-price {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    font-weight: 800;
+}
