@@ -1,48 +1,131 @@
-/* Hero Section dengan Gradient Biru */
-.hero-section {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    color: white;
-    padding: 120px 0 100px;
-    position: relative;
-    overflow: hidden;
+/* --- CSS UNTUK 3D CAROUSEL --- */
+
+/* Container utama Swiper */
+.swiper {
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 60px; /* Ruang lebih bawah untuk pagination */
 }
 
-/* Floating Search Box (Ciri khas rental) */
+/* PENTING: Style untuk Slide Individual di Mode 3D */
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 320px; /* Lebar FIX agar bisa tumpang tindih (overlap) */
+    height: auto; /* Tinggi menyesuaikan konten card */
+    /* Opsional: Efek refleksi bawah agar seperti di atas kaca (Chrome/Safari Only) */
+    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0006);
+}
+
+/* Responsif: Di HP (Layar kecil), lebarnya agak besar biar jelas */
+@media (max-width: 768px) {
+    .swiper-slide {
+        width: 80%; 
+    }
+}
+
+/* Style Card Mobil agar cocok dengan 3D */
+.car-card {
+    border: none !important; /* Hapus border kotak biar terlihat smooth */
+    border-radius: 15px;
+    background: #fff;
+    /* Shadow yang dalam agar terasa melayang */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Gambar Mobil */
+.img-wrapper {
+    height: 180px;
+    overflow: hidden;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.car-card .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* Navigasi Bulat (Panah Kiri Kanan) */
+.swiper-nav-buttons .btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    color: var(--color-dark);
+}
+
+.swiper-nav-buttons .btn:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+}
+
+/* Styling Pagination (Titik-titik bawah) */
+.swiper-pagination-bullet {
+    background: #ccc;
+    opacity: 0.5;
+}
+.swiper-pagination-bullet-active {
+    background: var(--color-primary) !important;
+    width: 20px;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+/* --- BANNER & SEARCH (Style Lama Dipertahankan) --- */
+.hero-slide {
+    height: 100vh;
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.hero-slide::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.1));
+}
+.carousel-caption {
+    bottom: 30%; left: 10%; z-index: 2;
+}
 .search-box-container {
     background: white;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    margin-top: -50px; /* Efek overlap ke hero */
+    margin-top: -80px;
     position: relative;
-    z-index: 10;
+    border-bottom: 3px solid var(--color-accent);
 }
 
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: var(--color-accent);
-    margin: 10px auto;
+/* --- FORM COMPONENTS (Toggle & Inputs) --- */
+
+/* Styling Toggle Switch Layanan */
+.btn-check:checked + .btn {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 6px rgba(19, 94, 249, 0.3);
 }
 
-/* Card Mobil */
-.car-card {
-    border: none;
-    transition: transform 0.3s;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+.btn-check:not(:checked) + .btn {
+    background-color: transparent;
+    color: var(--color-dark);
 }
 
-.car-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+.transition-btn {
+    transition: all 0.3s ease;
 }
 
-.car-price {
+/* Penyesuaian ikon input group */
+.input-group-text {
     color: var(--color-primary);
-    font-size: 1.2rem;
-    font-weight: 800;
 }

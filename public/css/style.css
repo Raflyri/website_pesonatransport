@@ -65,3 +65,42 @@ footer.footer-custom {
 footer.footer-custom a {
     color: #e0e0e0;
 }
+
+/* Update di public/css/style.css */
+
+/* 1. Base Navbar (Kondisi Awal / Mengambang) */
+.navbar-custom {
+    background-color: rgba(255, 255, 255, 0.95); /* Agak transparan */
+    backdrop-filter: blur(10px); /* Efek blur kaca */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    
+    /* Posisi Mengambang (Floating) */
+    width: 90%;           /* Tidak full lebar */
+    left: 5%;             /* Posisi tengah (5% kiri kanan) */
+    top: 20px;            /* Jarak dari atas (mengambang) */
+    border-radius: 50px;  /* Sudut membulat */
+    padding: 15px 20px;   /* Padding agak besar biar gagah */
+}
+
+/* Transisi Halus saat berubah bentuk */
+.transition-navbar {
+    transition: all 0.4s ease-in-out;
+}
+
+/* 2. Scrolled Navbar (Kondisi Sticky / Menempel) */
+.navbar-custom.scrolled {
+    width: 100%;          /* Lebar full */
+    left: 0;
+    top: 0;               /* Nempel di atas */
+    border-radius: 0;     /* Sudut kotak */
+    padding: 10px 0;      /* Padding mengecil sedikit */
+    background-color: rgba(255, 255, 255, 1); /* Putih solid */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Perbaikan warna link navbar agar konsisten */
+.navbar-custom .nav-link {
+    color: var(--color-dark);
+    font-weight: 600;
+    margin: 0 10px;       /* Jarak antar menu */
+}
