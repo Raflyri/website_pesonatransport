@@ -10,11 +10,13 @@ $routes->get('/', 'Home::index');
 // Login Routes
 $routes->get('login', 'Auth::login');
 $routes->post('login/auth', 'Auth::attempt');
+$routes->get('logout', 'Auth::logout');
 
 // app/Config/Routes.php
 
 $routes->group('admin', ['filter' => 'authGuard'], function($routes) {
-    $routes->get('/', 'Admin\Dashboard::index');
+    $routes->addRedirect('/', 'admin/dashboard');
+    $routes->get('dashboard', 'Admin\Dashboard::index');
     
     // CRUD Banners
     $routes->resource('banners', ['controller' => 'Admin\Banners']);

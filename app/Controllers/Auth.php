@@ -10,7 +10,7 @@ class Auth extends BaseController
     {
         // Pengecekan: Kalau sudah login, lempar langsung ke admin
         if (session()->get('isLoggedIn')) {
-            return redirect()->to('/admin');
+            return redirect()->to('/admin/dashboard');
         }
 
         $data = [
@@ -40,7 +40,7 @@ class Auth extends BaseController
             session()->set($sessionData);
 
             // Berhasil login, masuk ke dashboard
-            return redirect()->to('/admin');
+            return redirect()->to('/admin/dashboard');
         } else {
             // Gagal login, balik ke halaman login + bawa pesan error
             session()->setFlashdata('error', 'Username atau Password salah!');

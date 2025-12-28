@@ -8,7 +8,7 @@
   <div class="sidebar-wrapper">
     <nav class="mt-2">
       <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" data-accordion="false">
-        
+
         <li class="nav-item">
           <a href="<?= base_url('admin/dashboard') ?>" class="nav-link">
             <i class="nav-icon bi bi-speedometer"></i>
@@ -85,4 +85,4 @@
       </ul>
     </nav>
   </div>
-  </aside>
+</aside>
