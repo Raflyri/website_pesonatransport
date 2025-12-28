@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\UserModel;
 
 class Auth extends BaseController
 {
@@ -23,27 +24,43 @@ class Auth extends BaseController
 
     public function attempt()
     {
-        // 1. Ambil inputan dari form
-        $username = $this->request->getPost('username');
-        $password = $this->request->getPost('password');
+        $session = session();
+        $model = new UserModel();
 
-        // 2. LOGIC LOGIN SEMENTARA (Hardcode dulu buat tes)
-        // Nanti kita ganti pakai Database beneran
-        if ($username == 'admin' && $password == 'admin123') {
-            
-            // Set Session
-            $sessionData = [
-                'username'   => 'admin',
-                'name'       => 'Super Admin',
-                'isLoggedIn' => true,
-            ];
-            session()->set($sessionData);
+        // 1. Ambil inputan user
+        $username = $this->request->getVar('username');
+        $password = $this->request->getVar('password');
 
-            // Berhasil login, masuk ke dashboard
-            return redirect()->to('/admin/dashboard');
+        // 2. Cari user berdasarkan username di database
+        $data = $model->where('username', $username)->first();
+
+        if ($data) {
+            // 3. Verifikasi Password (Hash vs Input)
+            $pass = $data['password'];
+            $verify_pass = password_verify($password, $pass);
+
+            if ($verify_pass) {
+                // Password Benar! Simpan data sesi
+                $ses_data = [
+                    'id'         => $data['id'],
+                    'username'   => $data['username'],
+                    'name'       => $data['name'],
+                    'isLoggedIn' => true
+                ];
+                $session->set($ses_data);
+                
+                // Update last_login (Opsional, biar keren aja)
+                $model->update($data['id'], ['last_login' => date('Y-m-d H:i:s')]);
+
+                return redirect()->to('/admin/dashboard');
+            } else {
+                // Password Salah
+                $session->setFlashdata('error', 'Password salah.');
+                return redirect()->to('/login');
+            }
         } else {
-            // Gagal login, balik ke halaman login + bawa pesan error
-            session()->setFlashdata('error', 'Username atau Password salah!');
+            // Username tidak ditemukan
+            $session->setFlashdata('error', 'Username tidak ditemukan.');
             return redirect()->to('/login');
         }
     }
