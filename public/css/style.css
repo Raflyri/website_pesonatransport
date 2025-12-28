@@ -104,3 +104,22 @@ footer.footer-custom a {
     font-weight: 600;
     margin: 0 10px;       /* Jarak antar menu */
 }
+
+/* Styling Slider */
+#heroCarousel {
+    position: relative;
+}
+
+/* Sembunyikan tombol navigasi secara default */
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0; /* Tidak terlihat */
+    transition: opacity 0.3s ease-in-out; /* Efek transisi halus */
+    width: 5%; /* Perkecil area klik agar tidak menutupi banner */
+}
+
+/* Tampilkan tombol saat mouse berada di area carousel (Hover) */
+#heroCarousel:hover .carousel-control-prev,
+#heroCarousel:hover .carousel-control-next {
+    opacity: 1; /* Muncul penuh */
+}

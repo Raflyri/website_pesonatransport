@@ -30,5 +30,6 @@ $routes->group('admin', ['filter' => 'authGuard'], function($routes) {
     // Settings / Company Profile
     $routes->get('settings', 'Admin\Settings::index');
     $routes->post('settings/update', 'Admin\Settings::update');
+    
 });
 
