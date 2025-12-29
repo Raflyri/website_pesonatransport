@@ -15,102 +15,54 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link active rounded-pill px-4 me-2" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button">Semua Armada</button>
             </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link rounded-pill px-4 me-2" id="mpv-tab" data-bs-toggle="tab" data-bs-target="#mpv" type="button">MPV / Family</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link rounded-pill px-4" id="luxury-tab" data-bs-toggle="tab" data-bs-target="#luxury" type="button">Luxury</button>
-            </li>
         </ul>
 
         <div class="tab-content">
             <div class="tab-pane fade show active" id="all" role="tabpanel">
+                
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
 
-                        <div class="swiper-slide">
-                            <div class="card car-card h-100">
-                                <div class="img-wrapper">
-                                    <span class="badge bg-danger position-absolute top-0 start-0 m-3">Promo</span>
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/2016_Toyota_Innova_2.0_G_AG_10.jpg" class="card-img-top" alt="Innova">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold">Toyota Innova Reborn</h5>
-                                    <p class="text-muted small mb-2">MPV • Automatic • 7 Seats</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div>
-                                            <span class="text-primary fw-bold fs-5">Rp 750rb</span><small class="text-muted">/hari</small>
-                                        </div>
-                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">Pesan</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php if (!empty($fleets) && is_array($fleets)) : ?>
+                            <?php foreach ($fleets as $fleet) : ?>
+                            <div class="swiper-slide">
+                                <div class="card car-card h-100">
+                                    <div class="img-wrapper position-relative">
+                                        <?php if($fleet['price_per_day'] < 500000): ?>
+                                            <span class="badge bg-danger position-absolute top-0 start-0 m-3">Promo</span>
+                                        <?php endif; ?>
 
-                        <div class="swiper-slide">
-                            <div class="card car-card h-100">
-                                <div class="img-wrapper">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/2022_Toyota_Avanza_1.5_G_%28Indonesia%29_front_view.jpg/800px-2022_Toyota_Avanza_1.5_G_%28Indonesia%29_front_view.jpg" class="card-img-top" alt="Avanza">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold">All New Avanza</h5>
-                                    <p class="text-muted small mb-2">MPV • Manual • 7 Seats</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div>
-                                            <span class="text-primary fw-bold fs-5">Rp 450rb</span><small class="text-muted">/hari</small>
+                                        <img src="<?= !empty($fleet['image_path']) ? base_url($fleet['image_path']) : 'https://placehold.co/400x300?text=No+Image' ?>" 
+                                             class="card-img-top" 
+                                             alt="<?= esc($fleet['name']) ?>"
+                                             style="height: 200px; object-fit: cover;">
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold"><?= esc($fleet['name']) ?></h5>
+                                        <p class="text-muted small mb-2">
+                                            <?= esc($fleet['brand']) ?> • <?= esc($fleet['transmission']) ?> • <?= esc($fleet['seat_capacity']) ?> Seats
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <div>
+                                                <span class="text-primary fw-bold fs-5">Rp <?= number_format($fleet['price_per_day'], 0, ',', '.') ?></span>
+                                                <small class="text-muted">/hari</small>
+                                            </div>
+                                            <a href="https://wa.me/628123456789?text=Halo admin, saya mau sewa <?= esc($fleet['name']) ?>" class="btn btn-sm btn-outline-primary rounded-pill px-3">Pesan</a>
                                         </div>
-                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">Pesan</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="card car-card h-100">
-                                <div class="img-wrapper">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/2019_Toyota_HiAce_Premio_2.8_KDH200_%2820210711%29.jpg" class="card-img-top" alt="Hiace">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold">Toyota Hiace Premio</h5>
-                                    <p class="text-muted small mb-2">Minibus • Manual • 14 Seats</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div>
-                                            <span class="text-primary fw-bold fs-5">Rp 1.2jt</span><small class="text-muted">/hari</small>
-                                        </div>
-                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">Pesan</a>
-                                    </div>
-                                </div>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <div class="col-12 text-center">
+                                <p>Belum ada data armada.</p>
                             </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="card car-card h-100">
-                                <div class="img-wrapper">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/2016_Toyota_Fortuner_2.4_VRZ_wagon_%28Indonesia%29_front_view.jpg/800px-2016_Toyota_Fortuner_2.4_VRZ_wagon_%28Indonesia%29_front_view.jpg" class="card-img-top" alt="Fortuner">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold">Toyota Fortuner VRZ</h5>
-                                    <p class="text-muted small mb-2">SUV • Automatic • Diesel</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div>
-                                            <span class="text-primary fw-bold fs-5">Rp 1.5jt</span><small class="text-muted">/hari</small>
-                                        </div>
-                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">Pesan</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endif; ?>
 
                     </div>
                     <div class="swiper-pagination mt-4"></div>
                 </div>
-            </div>
 
-            <div class="tab-pane fade" id="mpv" role="tabpanel">
-                <p class="text-center py-5">Konten MPV...</p>
-            </div>
-            <div class="tab-pane fade" id="luxury" role="tabpanel">
-                <p class="text-center py-5">Konten Luxury...</p>
             </div>
         </div>
     </div>
@@ -122,28 +74,41 @@
             effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
-            slidesPerView: "auto",
-            loop: true,
+            slidesPerView: "auto", // Mengikuti lebar CSS (300px)
+            loop: true, // Looping aktif
+            spaceBetween: 30, // Memberi jarak antar slide supaya tidak 'nempel' saat transisi
+            
+            // Konfigurasi Coverflow agar tidak terlalu ekstrem (mengurangi efek loncat visual)
             coverflowEffect: {
                 rotate: 0,
                 stretch: 0,
                 depth: 100,
-                modifier: 2.5,
+                modifier: 1, // Dikurangi dari 2.5 ke 1 agar pergeseran lebih halus
                 slideShadows: false,
             },
-            // SELEKTOR TOMBOL NAVIGASI DIPERBAIKI
+
+            // Navigasi Tombol
             navigation: {
-                nextEl: ".swiper-next", // Sesuai class button di HTML fleet_list
+                nextEl: ".swiper-next",
                 prevEl: ".swiper-prev",
             },
+
+            // Pagination Bawah
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
             },
+
+            // Autoplay (Opsional: pause saat di-hover mouse)
             autoplay: {
                 delay: 3000,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true
             },
+
+            // PENTING: Mencegah klik ganda yang bikin loncat kejauhan
+            preventClicks: true,
+            preventClicksPropagation: true,
         });
     });
 </script>
