@@ -1,114 +1,141 @@
 <section id="list-mobil" class="py-5 mt-5">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-end mb-4 section-header" data-aos="fade-right">
-            <div>
-                <h2 class="fw-bold mb-1">Armada Pilihan</h2>
-                <p class="text-muted mb-0">Unit bersih & performa terjaga.</p>
-            </div>
-            <div class="swiper-nav-buttons d-none d-md-flex gap-2">
-                <button class="btn btn-outline-primary rounded-circle swiper-prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="btn btn-outline-primary rounded-circle swiper-next"><i class="fas fa-chevron-right"></i></button>
-            </div>
+        
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold">Armada Pilihan</h2>
+            <p class="text-muted">Unit terawat siap menemani perjalanan Anda.</p>
         </div>
 
-        <ul class="nav nav-pills mb-4" id="fleetTabs" role="tablist" data-aos="zoom-in" data-aos-delay="200">
+        <ul class="nav nav-pills justify-content-center mb-5" id="fleetTabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active rounded-pill px-4 me-2" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button">Semua Armada</button>
+                <button class="nav-link active rounded-pill px-4 me-2" id="tab-all" data-bs-toggle="tab" data-bs-target="#content-all" type="button">Semua</button>
             </li>
+            <?php if(!empty($categories)): ?>
+                <?php foreach($categories as $cat): ?>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill px-4 me-2" id="tab-<?= $cat['slug'] ?>" data-bs-toggle="tab" data-bs-target="#content-<?= $cat['id'] ?>" type="button">
+                        <?= esc($cat['name']) ?>
+                    </button>
+                </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </ul>
 
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="all" role="tabpanel">
-                
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
 
-                        <?php if (!empty($fleets) && is_array($fleets)) : ?>
-                            <?php foreach ($fleets as $fleet) : ?>
-                            <div class="swiper-slide">
-                                <div class="card car-card h-100">
-                                    <div class="img-wrapper position-relative">
-                                        <?php if($fleet['price_per_day'] < 500000): ?>
-                                            <span class="badge bg-danger position-absolute top-0 start-0 m-3">Promo</span>
-                                        <?php endif; ?>
-
-                                        <img src="<?= !empty($fleet['image_path']) ? base_url($fleet['image_path']) : 'https://placehold.co/400x300?text=No+Image' ?>" 
-                                             class="card-img-top" 
-                                             alt="<?= esc($fleet['name']) ?>"
-                                             style="height: 200px; object-fit: cover;">
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-bold"><?= esc($fleet['name']) ?></h5>
-                                        <p class="text-muted small mb-2">
-                                            <?= esc($fleet['brand']) ?> • <?= esc($fleet['transmission']) ?> • <?= esc($fleet['seat_capacity']) ?> Seats
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <div>
-                                                <span class="text-primary fw-bold fs-5">Rp <?= number_format($fleet['price_per_day'], 0, ',', '.') ?></span>
-                                                <small class="text-muted">/hari</small>
-                                            </div>
-                                            <a href="https://wa.me/628123456789?text=Halo admin, saya mau sewa <?= esc($fleet['name']) ?>" class="btn btn-sm btn-outline-primary rounded-pill px-3">Pesan</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endforeach; ?>
-                        <?php else : ?>
-                            <div class="col-12 text-center">
-                                <p>Belum ada data armada.</p>
-                            </div>
-                        <?php endif; ?>
-
+            <div class="tab-pane fade show active" id="content-all" role="tabpanel">
+                <div class="position-relative px-4"> <div class="swiper swiper-container-all py-4"> <div class="swiper-wrapper">
+                            <?php if (!empty($fleets)) : ?>
+                                <?php foreach ($fleets as $fleet) : ?>
+                                    <?= $this->setData(['fleet' => $fleet])->include('components/parts/fleet_card') ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                        <div class="swiper-pagination"></div>
                     </div>
-                    <div class="swiper-pagination mt-4"></div>
+                    <div class="swiper-nav-buttons d-flex justify-content-between position-absolute top-50 start-0 w-100 px-1 translate-middle-y" style="z-index: 10; pointer-events: none;">
+                        <button class="btn-prev-all" style="pointer-events: auto;"><i class="fas fa-chevron-left"></i></button>
+                        <button class="btn-next-all" style="pointer-events: auto;"><i class="fas fa-chevron-right"></i></button>
+                    </div>
                 </div>
-
             </div>
+
+            <?php if(!empty($categories)): ?>
+                <?php foreach($categories as $cat): ?>
+                <div class="tab-pane fade" id="content-<?= $cat['id'] ?>" role="tabpanel">
+                    <div class="position-relative px-4">
+                        <div class="swiper swiper-container-cat-<?= $cat['id'] ?> py-4">
+                            <div class="swiper-wrapper">
+                                <?php 
+                                    $filteredFleets = array_filter($fleets, function($f) use ($cat) {
+                                        return $f['category_id'] == $cat['id'];
+                                    });
+                                ?>
+                                <?php if (!empty($filteredFleets)) : ?>
+                                    <?php foreach ($filteredFleets as $fleet) : ?>
+                                        <?= $this->setData(['fleet' => $fleet])->include('components/parts/fleet_card') ?>
+                                    <?php endforeach; ?>
+                                <?php else : ?>
+                                    <div class="col-12 text-center text-muted">Tidak ada armada di kategori ini.</div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div class="swiper-nav-buttons d-flex justify-content-between position-absolute top-50 start-0 w-100 px-1 translate-middle-y" style="z-index: 10; pointer-events: none;">
+                            <button class="btn-prev-cat-<?= $cat['id'] ?>" style="pointer-events: auto;"><i class="fas fa-chevron-left"></i></button>
+                            <button class="btn-next-cat-<?= $cat['id'] ?>" style="pointer-events: auto;"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
         </div>
     </div>
 </section>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var swiper = new Swiper(".mySwiper", {
+        
+        // CONFIG MIRIP VIDEO YOUTUBE (CODEHAL)
+        const swiper3DConfig = {
             effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
-            slidesPerView: "auto", // Mengikuti lebar CSS (300px)
-            loop: true, // Looping aktif
-            spaceBetween: 30, // Memberi jarak antar slide supaya tidak 'nempel' saat transisi
-            
-            // Konfigurasi Coverflow agar tidak terlalu ekstrem (mengurangi efek loncat visual)
+            slidesPerView: "auto", // Wajib 'auto' + CSS width fixed
+            loop: true,
+            slidesPerGroup: 1, // Pastikan geser 1 per 1
+            spaceBetween: 20, // Jarak antar slide
             coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 1, // Dikurangi dari 2.5 ke 1 agar pergeseran lebih halus
-                slideShadows: false,
+                rotate: 0,      // Tidak memutar slide (tetap tegak)
+                stretch: 0,     // Tidak ditarik
+                depth: 100,     // Kedalaman 3D
+                modifier: 2.5,  // Kekuatan efek (semakin besar semakin 3D)
             },
-
-            // Navigasi Tombol
-            navigation: {
-                nextEl: ".swiper-next",
-                prevEl: ".swiper-prev",
-            },
-
-            // Pagination Bawah
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
+                dynamicBullets: true,
             },
-
-            // Autoplay (Opsional: pause saat di-hover mouse)
             autoplay: {
                 delay: 3000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
             },
+            observer: true,       // Wajib untuk Tabs
+            observeParents: true, // Wajib untuk Tabs
+            
+            // Fix agar AOS refresh saat slide berubah (Opsional)
+            on: {
+                init: function () {
+                    AOS.refresh(); 
+                },
+                slideChangeTransitionEnd: function () {
+                    AOS.refresh(); 
+                }
+            }
+        };
 
-            // PENTING: Mencegah klik ganda yang bikin loncat kejauhan
-            preventClicks: true,
-            preventClicksPropagation: true,
+        // Inisialisasi Tab 'Semua'
+        new Swiper(".swiper-container-all", {
+            ...swiper3DConfig,
+            navigation: {
+                nextEl: ".btn-next-all",
+                prevEl: ".btn-prev-all",
+            },
         });
+
+        // Inisialisasi Tab Kategori
+        <?php if(!empty($categories)): ?>
+            <?php foreach($categories as $cat): ?>
+                new Swiper(".swiper-container-cat-<?= $cat['id'] ?>", {
+                    ...swiper3DConfig,
+                    navigation: {
+                        nextEl: ".btn-next-cat-<?= $cat['id'] ?>",
+                        prevEl: ".btn-prev-cat-<?= $cat['id'] ?>",
+                    },
+                });
+            <?php endforeach; ?>
+        <?php endif; ?>
     });
 </script>

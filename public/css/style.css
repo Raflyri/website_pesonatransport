@@ -123,3 +123,41 @@ footer.footer-custom a {
 #heroCarousel:hover .carousel-control-next {
     opacity: 1; /* Muncul penuh */
 }
+
+/* Custom Swiper 3D Style */
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 350px !important; /* KUNCI: Lebar slide harus fix agar 3D terlihat */
+    height: auto; 
+    /* Agar slide yang tidak aktif terlihat agak transparan/blur (opsional) */
+    /* filter: blur(2px); */ 
+}
+
+.swiper-slide-active {
+    /* filter: blur(0); */
+}
+
+.car-card {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Mempercantik tombol navigasi */
+.swiper-nav-buttons button {
+    width: 45px;
+    height: 45px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: none;
+    transition: 0.3s;
+    color: var(--bs-primary); /* Sesuaikan warna primary kamu */
+}
+
+.swiper-nav-buttons button:hover {
+    background: var(--bs-primary);
+    color: white;
+    transform: scale(1.1);
+}
