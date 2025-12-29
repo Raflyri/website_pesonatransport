@@ -77,20 +77,31 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // CONFIG MIRIP VIDEO YOUTUBE (CODEHAL)
+        // CONFIG SWIPER 3D (Updated Fix)
         const swiper3DConfig = {
             effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
-            slidesPerView: "auto", // Wajib 'auto' + CSS width fixed
+            slidesPerView: "auto", 
+            
+            // --- BAGIAN FIX LOOPING ---
             loop: true,
-            slidesPerGroup: 1, // Pastikan geser 1 per 1
-            spaceBetween: 20, // Jarak antar slide
+            // PENTING: Wajib ada jika slidesPerView: 'auto'
+            // Angka ini menentukan jumlah slide bayangan. 
+            // Minimal setara dengan jumlah slide yang terlihat di layar (misal 5 atau 6).
+            loopedSlides: 6, 
+            // --------------------------
+
+            speed: 600, // Kecepatan transisi biar lebih smooth
+            slidesPerGroup: 1,
+            spaceBetween: 30, // Jarak antar slide
+            
             coverflowEffect: {
-                rotate: 0,      // Tidak memutar slide (tetap tegak)
-                stretch: 0,     // Tidak ditarik
-                depth: 100,     // Kedalaman 3D
-                modifier: 2.5,  // Kekuatan efek (semakin besar semakin 3D)
+                rotate: 0,      
+                stretch: 0,     
+                depth: 100,     
+                modifier: 2.5,  
+                slideShadows: false, // Bayangan dimatikan biar bersih
             },
             pagination: {
                 el: ".swiper-pagination",
@@ -102,39 +113,43 @@
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
             },
-            observer: true,       // Wajib untuk Tabs
-            observeParents: true, // Wajib untuk Tabs
+            observer: true,       
+            observeParents: true, 
             
-            // Fix agar AOS refresh saat slide berubah (Opsional)
             on: {
                 init: function () {
-                    AOS.refresh(); 
+                    if (typeof AOS !== 'undefined') AOS.refresh(); 
                 },
                 slideChangeTransitionEnd: function () {
-                    AOS.refresh(); 
+                    if (typeof AOS !== 'undefined') AOS.refresh(); 
                 }
             }
         };
 
         // Inisialisasi Tab 'Semua'
-        new Swiper(".swiper-container-all", {
-            ...swiper3DConfig,
-            navigation: {
-                nextEl: ".btn-next-all",
-                prevEl: ".btn-prev-all",
-            },
-        });
+        // Kita bungkus dalam try-catch biar kalau error satu, yang lain tetap jalan
+        try {
+            new Swiper(".swiper-container-all", {
+                ...swiper3DConfig,
+                navigation: {
+                    nextEl: ".btn-next-all",
+                    prevEl: ".btn-prev-all",
+                },
+            });
+        } catch (e) { console.error("Swiper All Error:", e); }
 
         // Inisialisasi Tab Kategori
         <?php if(!empty($categories)): ?>
             <?php foreach($categories as $cat): ?>
-                new Swiper(".swiper-container-cat-<?= $cat['id'] ?>", {
-                    ...swiper3DConfig,
-                    navigation: {
-                        nextEl: ".btn-next-cat-<?= $cat['id'] ?>",
-                        prevEl: ".btn-prev-cat-<?= $cat['id'] ?>",
-                    },
-                });
+                try {
+                    new Swiper(".swiper-container-cat-<?= $cat['id'] ?>", {
+                        ...swiper3DConfig,
+                        navigation: {
+                            nextEl: ".btn-next-cat-<?= $cat['id'] ?>",
+                            prevEl: ".btn-prev-cat-<?= $cat['id'] ?>",
+                        },
+                    });
+                } catch (e) { console.error("Swiper Cat <?= $cat['id'] ?> Error:", e); }
             <?php endforeach; ?>
         <?php endif; ?>
     });
