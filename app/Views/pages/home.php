@@ -24,34 +24,6 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
-<script>
-    var swiper = new Swiper(".mySwiper", {
-        effect: "coverflow", // Mode 3D
-        grabCursor: true,
-        centeredSlides: true, // Fokus slide selalu di tengah
-        slidesPerView: "auto", // Lebar slide mengikuti CSS (300px) bukan dibagi rata layar
-        loop: true, // Bisa geser terus menerus
-        coverflowEffect: {
-            rotate: 30, // Derajat kemiringan slide samping
-            stretch: 0,
-            depth: 100, // Kedalaman efek 3D
-            modifier: 1,
-            slideShadows: true, // Bayangan biar real
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-next",
-            prevEl: ".swiper-prev",
-        },
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        }
-    });
-</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
