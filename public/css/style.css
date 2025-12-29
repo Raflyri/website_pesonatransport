@@ -135,7 +135,7 @@ footer.footer-custom a {
 }
 
 .swiper-slide-active {
-    /* filter: blur(0); */
+    filter: blur(0); 
 }
 
 .car-card {
