@@ -115,3 +115,45 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Perbaiki selector menjadi ".mySwiper" sesuai HTML diatas
+        var swiper = new Swiper(".mySwiper", {
+            // Aktifkan Efek 3D
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto", // Biarkan CSS yang atur lebar
+            initialSlide: 1, // Mulai dari tengah
+            loop: true, // Bisa geser terus menerus
+
+            // Pengaturan Efek 3D
+            coverflowEffect: {
+                rotate: 0, // Tidak memutar kartu (lebih rapi modern)
+                stretch: 0,
+                depth: 100, // Kedalaman perspektif
+                modifier: 2.5, // Kekuatan efek 3D
+                slideShadows: false, // Matikan bayangan hitam jika mengganggu
+            },
+
+            // Navigasi Tombol
+            navigation: {
+                nextEl: ".swiper-next",
+                prevEl: ".swiper-prev",
+            },
+
+            // Titik-titik bawah
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+
+            // Auto Play (Opsional)
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+    });
+</script>

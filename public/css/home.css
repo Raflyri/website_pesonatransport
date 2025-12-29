@@ -99,3 +99,60 @@
     40% {transform: translateY(-10px);}
     60% {transform: translateY(-5px);}
 }
+
+/* --- FITUR SCROLL SNAP (MODE PROXIMITY - AMAN) --- */
+
+html {
+    /* Gunakan 'proximity' agar tidak agresif dan tidak mental-mental */
+    scroll-snap-type: y proximity; 
+    scroll-behavior: smooth;
+}
+
+/* 1. Target BANNER (Start Point) */
+#mainCarousel {
+    scroll-snap-align: start;
+    /* Memberi jarak sedikit supaya navbar tidak ketutup saat balik ke atas */
+    scroll-margin-top: 0; 
+}
+
+/* 2. Target SEARCH BOX (Destination Point) */
+.search-section {
+    scroll-snap-align: start;
+    
+    /* PENTING: Angka ini harus > Tinggi Navbar kamu (sekitar 80-100px)
+       Supaya pas lompat, search box posisinya pas di tengah, bukan ketutup navbar */
+    scroll-margin-top: 110px; 
+}
+
+/* Reset snap untuk elemen lain di bawahnya supaya footer/list mobil aman */
+body > section:not(.search-section):not(#mainCarousel) {
+    scroll-snap-align: none;
+}
+
+/* --- CSS 3D CAROUSEL (SWIPER) --- */
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px; /* Lebar fix kartu agar efek 3D terlihat */
+    height: auto;
+}
+
+/* Efek kartu mobil */
+.car-card {
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Shadow lebih lembut */
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.swiper-slide-active .car-card {
+    /* Highlight kartu yang sedang di tengah */
+    border: 2px solid #135ef9; 
+}

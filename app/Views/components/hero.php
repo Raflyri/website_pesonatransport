@@ -2,6 +2,11 @@
     <div id="mainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
         <div class="carousel-indicators">
+            <!--div class="mt-5 animate__animated animate__fadeInUp animate__delay-1s">
+                <a href="#pencarian" class="text-white fs-1">
+                    <i class="fas fa-chevron-down bounce-animation"></i>
+                </a>
+            </div-->
             <?php foreach ($banners as $key => $banner) : ?>
                 <button type="button"
                     data-bs-target="#mainCarousel"
@@ -10,11 +15,6 @@
                     aria-current="<?= $key === 0 ? 'true' : 'false' ?>"
                     aria-label="Slide <?= $key + 1 ?>"></button>
             <?php endforeach; ?>
-            <div class="mt-5 animate__animated animate__fadeInUp animate__delay-1s">
-                <a href="#pencarian" class="text-white fs-1">
-                    <i class="fas fa-chevron-down bounce-animation"></i>
-                </a>
-            </div>
         </div>
 
 
