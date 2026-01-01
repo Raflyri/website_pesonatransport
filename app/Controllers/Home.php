@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\BannersModel;
 use App\Models\FleetModel;
 use App\Models\FleetCategoryModel;
+use App\Models\ProfileModel;
 
 class Home extends BaseController
 {
@@ -13,6 +14,7 @@ class Home extends BaseController
         $bannersModel = new BannersModel();
         $fleetModel = new FleetModel();
         $categoryModel = new FleetCategoryModel();
+        $profileModel = new ProfileModel();
 
         $data = [
             'title' => 'Home | Pesona Transport',
@@ -20,9 +22,22 @@ class Home extends BaseController
                 ->orderBy('display_order', 'ASC')
                 ->findAll(),
             'fleets'  => $fleetModel->getFleetsWithCategory(),
-            'categories' => $categoryModel->findAll()
+            'categories' => $categoryModel->findAll(),
+            'profile'    => $profileModel->first(),
         ];
 
         return view('pages/home', $data);
+    }
+
+    public function about()
+    {
+        $profileModel = new ProfileModel();
+        
+        $data = [
+            'title'   => 'Tentang Kami - Pesona Transport',
+            'profile' => $profileModel->first(),
+        ];
+
+        return view('pages/about', $data);
     }
 }

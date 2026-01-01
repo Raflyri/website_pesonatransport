@@ -1,0 +1,66 @@
+/* --- Custom 3D Carousel Styles (Scoped to #list-mobil) --- */
+
+/* Container dengan perspektif 3D */
+#list-mobil .swiper-container-all, 
+#list-mobil [class*="swiper-container-cat-"] {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    perspective: 1200px; /* Memberikan kedalaman ruang 3D */
+}
+
+/* Styling Slide/Kartu */
+#list-mobil .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    /* Ukuran fix agar rasio kartu konsisten saat diputar 3D */
+    width: 300px !important; 
+    height: 400px !important; 
+    border-radius: 15px;
+    background-color: #fff;
+    overflow: hidden; /* Mencegah konten keluar dari radius */
+    
+    /* Bayangan kartu yang lebih dramatis */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+    
+    /* Transisi halus */
+    transition: all 0.5s ease;
+}
+
+/* Reset style Card Bootstrap di dalam slide agar pas */
+#list-mobil .swiper-slide .card {
+    height: 100%;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Mengatur gambar di dalam kartu */
+#list-mobil .swiper-slide .card-img-top {
+    height: 200px; /* Tinggi gambar fix */
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Styling Bayangan Overlay (Saat slide berada di samping/belakang) */
+#list-mobil .swiper-slide-shadow-left,
+#list-mobil .swiper-slide-shadow-right {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+    border-radius: 15px;
+}
+
+/* Navigasi Tombol (Optional: menyesuaikan posisi jika perlu) */
+#list-mobil .swiper-nav-buttons button {
+    width: 45px;
+    height: 45px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: none;
+    border-radius: 50%;
+    color: #135ef9; /* Sesuaikan dengan warna primary kamu */
+    transition: 0.3s;
+}
+
+#list-mobil .swiper-nav-buttons button:hover {
+    background: #135ef9;
+    color: white;
+    transform: scale(1.1);
+}
