@@ -33,8 +33,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="<?= base_url('admin/settings') ?>" class="nav-link">
-            <i class="nav-icon bi bi-building-gear"></i>
+          <a href="<?= base_url('admin/profile') ?>" class="nav-link <?= (current_url() == base_url('admin/profile')) ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-building"></i>
             <p>Profil Perusahaan</p>
           </a>
         </li>

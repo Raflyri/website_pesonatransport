@@ -11,6 +11,9 @@
                 <li class="nav-item"><a class="nav-link active" href="<?= base_url('/') ?>">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Daftar Mobil</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Layanan</a></li>
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('/tentang-kami')) ? 'active' : '' ?>" href="<?= base_url('/tentang-kami') ?>">Tentang Kami</a>
+                </li>
                 <li class="nav-item ms-3">
                     <a class="btn btn-accent-custom px-4 rounded-pill" href="#">
                         <i class="fab fa-whatsapp"></i> Hubungi Kami
