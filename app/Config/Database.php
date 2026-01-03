@@ -31,7 +31,7 @@ class Database extends Config
         'password'     => '',
         'database'     => '',
         'DBDriver'     => 'MySQLi',
-        'DBPrefix'     => 'web_staging_1',
+        'DBPrefix'     => '',
         //'hostname'     => 'localhost',
         //'username'     => 'rbed8626_db_stag_transport',
         //'password'     => 'S@3@p24z9O',
