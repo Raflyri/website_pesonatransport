@@ -94,7 +94,59 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-save"></i> Simpan Semua Perubahan</button>
+            <div class="card card-info card-outline mt-4">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-building mr-2"></i> Informasi Kantor & Kontak</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Deskripsi Singkat (Footer)</label>
+                        <textarea name="site_desc_footer" class="form-control" rows="2"><?= $site_desc_footer ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat Kantor</label>
+                        <textarea name="company_address" class="form-control" rows="3"><?= $company_address ?></textarea>
+                        <small class="text-muted">Gunakan Enter untuk baris baru.</small>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nomor Telepon (Display)</label>
+                                <input type="text" name="company_phone" class="form-control" value="<?= $company_phone ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Email Kantor</label>
+                                <input type="text" name="company_email" class="form-control" value="<?= $company_email ?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-success card-outline mt-4">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-share-alt mr-2"></i> Social Media Links</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label><i class="fab fa-facebook text-primary"></i> Link Facebook</label>
+                        <input type="text" name="social_facebook" class="form-control" value="<?= $social_facebook ?>" placeholder="https://facebook.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fab fa-instagram text-danger"></i> Link Instagram</label>
+                        <input type="text" name="social_instagram" class="form-control" value="<?= $social_instagram ?>" placeholder="https://instagram.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fab fa-whatsapp text-success"></i> Link WhatsApp</label>
+                        <input type="text" name="social_whatsapp" class="form-control" value="<?= $social_whatsapp ?>" placeholder="https://wa.me/628...">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block mt-4 mb-5"><i class="fas fa-save"></i> Simpan Semua Perubahan</button>
+        </form>
         </form>
         <br><br>
     </div>

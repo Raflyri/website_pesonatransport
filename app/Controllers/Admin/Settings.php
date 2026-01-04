@@ -23,23 +23,40 @@ class Settings extends BaseController
             'site_logo_header' => get_setting('site_logo_header'),
             'site_logo_footer' => get_setting('site_logo_footer'),
             'site_logo_login'  => get_setting('site_logo_login'),
+
+            // DATA BARU (Footer & Kontak)
+            'site_desc_footer' => get_setting('site_desc_footer'),
+            'company_address'  => get_setting('company_address'),
+            'company_phone'    => get_setting('company_phone'),
+            'company_email'    => get_setting('company_email'),
+            'social_facebook'  => get_setting('social_facebook'),
+            'social_instagram' => get_setting('social_instagram'),
+            'social_whatsapp'  => get_setting('social_whatsapp'),
         ];
         return view('admin/settings/index', $data);
     }
 
     public function update()
     {
-        // 1. Update Nama Website
-        $siteName = $this->request->getPost('site_name');
-        $this->settingModel->where('key', 'site_name')->set(['value' => $siteName])->update();
+        // 1. Update Data Text (Nama, Desc, Kontak, Sosmed)
+        $textFields = [
+            'site_name', 'site_desc_footer', 
+            'company_address', 'company_phone', 'company_email',
+            'social_facebook', 'social_instagram', 'social_whatsapp'
+        ];
 
-        // 2. Proses Upload 4 Jenis Gambar
-        $this->handleUpload('site_icon');        // Favicon
-        $this->handleUpload('site_logo_header'); // Header
-        $this->handleUpload('site_logo_footer'); // Footer
-        $this->handleUpload('site_logo_login');  // Login
+        foreach ($textFields as $key) {
+            $val = $this->request->getPost($key);
+            $this->settingModel->where('key', $key)->set(['value' => $val])->update();
+        }
 
-        return redirect()->to('/admin/settings')->with('message', 'Pengaturan & Logo berhasil diperbarui');
+        // 2. Update File Images (Panggil fungsi handleUpload yg sudah kita buat sebelumnya)
+        $this->handleUpload('site_icon');       
+        $this->handleUpload('site_logo_header');
+        $this->handleUpload('site_logo_footer');
+        $this->handleUpload('site_logo_login'); 
+
+        return redirect()->to('/admin/settings')->with('message', 'Pengaturan berhasil diperbarui');
     }
 
     private function handleUpload($fieldKey)
