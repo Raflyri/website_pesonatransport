@@ -23,7 +23,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link <?= ($uri == 'tentang-kami') ? 'active' : '' ?>" href="#">Tentang Kami</a>
+                    <a class="nav-link <?= ($uri == 'tentang-kami') ? 'active' : '' ?>" href="<?= base_url('/tentang-kami') ?>">Tentang Kami</a>
                 </li>
 
                 <li class="nav-item ms-3">
