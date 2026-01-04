@@ -41,7 +41,10 @@
             <div class="col-md-4">
                 <h6 class="fw-bold mb-3 text-uppercase text-primary small ls-1">Kantor Kami</h6>
                 <ul class="list-unstyled text-small text-white-50">
-                    <li class="mb-3 d-flex"><i class="fas fa-map-marker-alt text-primary me-3 mt-1"></i> Jl. Margonda Raya No. 123, Depok, Jawa Barat, Indonesia</li>
+                    <li class="mb-3 d-flex"><i class="fas fa-map-marker-alt text-primary me-3 mt-1"></i> The Archies Sudirman (D/H T Plaza),
+                        Tower B, Ruko B No.B4.
+                        Jl. Penjernihan I No.1 Kav.1,
+                        Jakarta Pusat 10210</li>
                     <li class="mb-3 d-flex"><i class="fas fa-phone text-primary me-3 mt-1"></i> (021) 7788-9900</li>
                     <li class="mb-3 d-flex"><i class="fas fa-envelope text-primary me-3 mt-1"></i> info@pesonatransport.com</li>
                 </ul>
