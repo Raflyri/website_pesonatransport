@@ -42,21 +42,35 @@ class Settings extends BaseController
         return redirect()->to('/admin/settings')->with('message', 'Pengaturan & Logo berhasil diperbarui');
     }
 
-    // Fungsi Private untuk Handle Upload Berulang
     private function handleUpload($fieldKey)
     {
         $file = $this->request->getFile($fieldKey);
 
+        // Pastikan ada file yang diupload dan valid
         if ($file && $file->isValid() && !$file->hasMoved()) {
-            // Generate nama unik
-            $newName = $file->getRandomName();
-            // Pindahkan ke folder uploads/settings
-            $file->move('uploads/settings/', $newName);
+            
+            // 1. AMBIL DATA LAMA DARI DATABASE
+            // Kita perlu tahu path file lama sebelum ditimpa
+            $oldFile = $this->settingModel->getValue($fieldKey);
 
-            // Update database sesuai key yang dikirim
+            // 2. CEK & HAPUS FILE LAMA (GARBAGE COLLECTION)
+            // Syarat hapus: 
+            // - Datanya ada
+            // - Filenya beneran ada di server (file_exists)
+            // - PENTING: Hanya hapus jika file ada di folder 'uploads/'. 
+            //   Jangan sampai kita menghapus file bawaan/default system (seperti folder admin_assets).
+            if (!empty($oldFile) && strpos($oldFile, 'uploads/') === 0 && file_exists(FCPATH . $oldFile)) {
+                unlink(FCPATH . $oldFile); // HAPUS file lama
+            }
+
+            // 3. PROSES UPLOAD FILE BARU
+            $newName = $file->getRandomName();
+            $file->move('uploads/settings/', $newName);
+            
+            // 4. UPDATE DATABASE DENGAN PATH BARU
             $this->settingModel->where('key', $fieldKey)
-                ->set(['value' => 'uploads/settings/' . $newName])
-                ->update();
+                               ->set(['value' => 'uploads/settings/' . $newName])
+                               ->update();
         }
     }
 }
