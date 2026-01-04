@@ -33,5 +33,8 @@ $routes->group('admin', ['filter' => 'authGuard'], function($routes) {
 
     $routes->get('profile', 'Admin\Profile::index');
     $routes->post('profile/update', 'Admin\Profile::update');
+
+    $routes->get('settings', 'Admin\Settings::index');
+    $routes->post('settings/update', 'Admin\Settings::update');
     
 });

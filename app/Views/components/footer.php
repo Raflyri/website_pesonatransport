@@ -5,9 +5,13 @@
     <div class="container pt-4">
         <div class="row g-4">
             <div class="col-md-4">
-                <a class="navbar-brand fw-bold text-white fs-3 mb-3 d-block" href="#">
-                    <i class="fas fa-car-side text-primary me-2"></i> PESONA<span class="text-primary">TRANSPORT</span>
-                </a>
+                <div class="footer-logo-container mb-3">
+                    <a href="<?= base_url() ?>">
+                        <img src="<?= base_url(get_setting('site_logo_footer', 'admin_assets/img/AdminLTELogo.png')) ?>"
+                            alt="Logo"
+                            class="footer-logo-responsive">
+                    </a>
+                </div>
                 <p class="text-white-50 small mb-4">
                     Penyedia jasa sewa mobil terpercaya di Jabodetabek. Melayani kebutuhan transportasi harian, korporasi, hingga pariwisata dengan armada prima.
                 </p>
@@ -63,3 +67,29 @@
         </div>
     </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Cari elemen logo footer
+        const footerLogo = document.querySelector('.footer-logo-container');
+
+        if (footerLogo) {
+            // Buat Observer (Pengamat)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Jika footer masuk ke layar (isIntersecting)
+                    if (entry.isIntersecting) {
+                        footerLogo.classList.add('shining'); // Tambah class animasi
+                    } else {
+                        footerLogo.classList.remove('shining'); // Hapus class biar bisa main lagi kalau di-scroll balik
+                    }
+                });
+            }, {
+                threshold: 0.5
+            }); // Animasi jalan kalau 50% logo sudah kelihatan
+
+            // Mulai mengamati
+            observer.observe(footerLogo);
+        }
+    });
+</script>
