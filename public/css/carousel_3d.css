@@ -10,20 +10,61 @@
 
 /* Styling Slide/Kartu */
 #list-mobil .swiper-slide {
-    background-position: center;
-    background-size: cover;
-    /* Ukuran fix agar rasio kartu konsisten saat diputar 3D */
+    /* Hapus background-color putih di sini supaya transparan saat muter */
+    background-color: transparent !important; 
+    
+    /* Hapus overflow: hidden agar efek 3D tidak terpotong */
+    overflow: visible !important; 
+    
+    /* Tetap pertahankan ukuran */
     width: 300px !important; 
-    height: 400px !important; 
+    height: 400px !important;
+    perspective: 1000px; /* Perspektif untuk efek flip */
+}
+
+/* --- Tambahan Class Baru untuk Flip Effect --- */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek membal halus */
+    transform-style: preserve-3d;
+}
+
+/* Class ini akan di-toggle via JS saat diklik */
+.swiper-slide.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Sisi Depan & Belakang */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     border-radius: 15px;
+    overflow: hidden; /* Supaya gambar/konten gak keluar radius */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Pindah shadow ke sini */
+}
+
+/* Tampilan Depan (Default) */
+.flip-card-front {
     background-color: #fff;
-    overflow: hidden; /* Mencegah konten keluar dari radius */
-    
-    /* Bayangan kartu yang lebih dramatis */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
-    
-    /* Transisi halus */
-    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+/* Tampilan Belakang (Detail) */
+.flip-card-back {
+    background-color: #135ef9; /* Warna Primary/Accent kamu */
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 /* Reset style Card Bootstrap di dalam slide agar pas */
