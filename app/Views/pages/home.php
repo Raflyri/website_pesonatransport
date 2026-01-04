@@ -2,6 +2,7 @@
 
 <?= $this->section('styles') ?>
 <link rel="stylesheet" href="<?= base_url('css/home.css') ?>">
+<link rel="stylesheet" href="<?= base_url('css/carousel_3d.css') ?>">
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>

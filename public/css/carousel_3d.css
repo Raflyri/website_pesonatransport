@@ -1,0 +1,107 @@
+/* --- Custom 3D Carousel Styles (Scoped to #list-mobil) --- */
+
+/* Container dengan perspektif 3D */
+#list-mobil .swiper-container-all, 
+#list-mobil [class*="swiper-container-cat-"] {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    perspective: 1200px; /* Memberikan kedalaman ruang 3D */
+}
+
+/* Styling Slide/Kartu */
+#list-mobil .swiper-slide {
+    /* Hapus background-color putih di sini supaya transparan saat muter */
+    background-color: transparent !important; 
+    
+    /* Hapus overflow: hidden agar efek 3D tidak terpotong */
+    overflow: visible !important; 
+    
+    /* Tetap pertahankan ukuran */
+    width: 300px !important; 
+    height: 400px !important;
+    perspective: 1000px; /* Perspektif untuk efek flip */
+}
+
+/* --- Tambahan Class Baru untuk Flip Effect --- */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek membal halus */
+    transform-style: preserve-3d;
+}
+
+/* Class ini akan di-toggle via JS saat diklik */
+.swiper-slide.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Sisi Depan & Belakang */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden; /* Supaya gambar/konten gak keluar radius */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Pindah shadow ke sini */
+}
+
+/* Tampilan Depan (Default) */
+.flip-card-front {
+    background-color: #fff;
+    z-index: 2;
+}
+
+/* Tampilan Belakang (Detail) */
+.flip-card-back {
+    background-color: #135ef9; /* Warna Primary/Accent kamu */
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Reset style Card Bootstrap di dalam slide agar pas */
+#list-mobil .swiper-slide .card {
+    height: 100%;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Mengatur gambar di dalam kartu */
+#list-mobil .swiper-slide .card-img-top {
+    height: 200px; /* Tinggi gambar fix */
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Styling Bayangan Overlay (Saat slide berada di samping/belakang) */
+#list-mobil .swiper-slide-shadow-left,
+#list-mobil .swiper-slide-shadow-right {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+    border-radius: 15px;
+}
+
+/* Navigasi Tombol (Optional: menyesuaikan posisi jika perlu) */
+#list-mobil .swiper-nav-buttons button {
+    width: 45px;
+    height: 45px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: none;
+    border-radius: 50%;
+    color: #135ef9; /* Sesuaikan dengan warna primary kamu */
+    transition: 0.3s;
+}
+
+#list-mobil .swiper-nav-buttons button:hover {
+    background: #135ef9;
+    color: white;
+    transform: scale(1.1);
+}
