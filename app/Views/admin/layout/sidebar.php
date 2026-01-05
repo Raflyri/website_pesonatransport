@@ -4,7 +4,8 @@
       <img src="<?= base_url(get_setting('site_icon', 'admin_assets/img/AdminLTELogo.png')) ?>"
         alt="<?= get_setting('site_name', 'Pesona Transport') ?>"
         class="brand-image opacity-75 shadow"
-        style="max-height: 33px;"> <span class="brand-text fw-light"><?= get_setting('site_name', 'Pesona Transport') ?></span>
+        style="max-height: 33px;"> 
+        <span class="brand-text fw-light"><?= get_setting('site_name', 'Pesona Transport') ?></span>
     </a>
   </div>
   <div class="sidebar-wrapper">

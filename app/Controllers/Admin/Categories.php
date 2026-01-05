@@ -5,6 +5,7 @@ use App\Models\FleetCategoryModel;
 
 class Categories extends ResourceController
 {
+    protected $helpers = ['settings', 'form', 'text'];
     protected $modelName = FleetCategoryModel::class;
 
     public function index()

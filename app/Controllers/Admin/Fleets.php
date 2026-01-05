@@ -6,6 +6,7 @@ use App\Models\FleetCategoryModel;
 
 class Fleets extends ResourceController
 {
+    protected $helpers = ['settings', 'form', 'text'];
     protected $fleetModel;
     protected $categoryModel;
 
