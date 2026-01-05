@@ -26,9 +26,9 @@
                     <a class="nav-link <?= ($uri == 'armada') ? 'active' : '' ?>" href="<?= base_url('/armada') ?>">Armada</a>
                 </li>
 
-                <li class="nav-item">
+                <!--li class="nav-item">
                     <a class="nav-link <?= ($uri == 'layanan') ? 'active' : '' ?>" href="#">Layanan</a>
-                </li>
+                </li-->
 
                 <li class="nav-item">
                     <a class="nav-link <?= ($uri == 'tentang-kami') ? 'active' : '' ?>" href="<?= base_url('/tentang-kami') ?>">Tentang Kami</a>

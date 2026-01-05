@@ -55,3 +55,18 @@
     border-color: #0d6efd;
     box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
 }
+
+/* ... css sebelumnya ... */
+
+/* Fix untuk Header yang menutupi konten */
+.hero-spacer {
+    padding-top: 120px; /* Sesuaikan angka ini dengan tinggi header kamu */
+    padding-bottom: 3rem; /* Opsional: menjaga jarak bawah tetap proporsional */
+}
+
+/* Responsif untuk layar kecil (HP) */
+@media (max-width: 768px) {
+    .hero-spacer {
+        padding-top: 100px; /* Biasanya header di HP lebih tipis */
+    }
+}

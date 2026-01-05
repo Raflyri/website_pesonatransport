@@ -6,7 +6,7 @@
 
 <?= $this->section('content') ?>
 
-<section class="bg-light py-5">
+<section class="bg-light hero-spacer">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
