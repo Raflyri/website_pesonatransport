@@ -38,9 +38,12 @@
 
             <div class="tab-pane fade show active" id="pills-all" role="tabpanel">
                 <div class="row g-4">
+
                     <?php foreach ($fleets as $fleet) : ?>
-                        <?= $this->include('components/parts/fleet_card_item', ['fleet' => $fleet]) ?>
+                        <!--$this->include('components/parts/fleet_card_item', ['fleet' => $fleet]) ?-->
+                        <?= $this->setData(['fleet' => $fleet])->include('components/parts/fleet_card_item') ?>
                     <?php endforeach; ?>
+
                     <?php if (empty($fleets)): ?>
                         <div class="col-12 text-center py-5">
                             <p class="text-muted">Belum ada armada tersedia.</p>
@@ -61,9 +64,11 @@
 
                         <?php if (!empty($filteredFleets)) : ?>
                             <?php foreach ($filteredFleets as $fleet) : ?>
-                                <?= $this->include('components/parts/fleet_card_item', ['fleet' => $fleet]) ?>
+                                <!--?= $this->include('components/parts/fleet_card_item', ['fleet' => $fleet]) ?-->
+                                <?= $this->setData(['fleet' => $fleet])->include('components/parts/fleet_card_item') ?>
                             <?php endforeach; ?>
                         <?php else : ?>
+
                             <div class="col-12 text-center py-5">
                                 <i class="fas fa-search fa-3x text-muted mb-3"></i>
                                 <h5 class="text-muted">Tidak ada armada di kategori <?= $cat['name'] ?> saat ini.</h5>

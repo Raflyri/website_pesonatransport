@@ -49,6 +49,10 @@ class Home extends BaseController
         $categoryModel = new FleetCategoryModel();
         $profileModel = new ProfileModel();
 
+        //$fleetsData = $fleetModel->where('is_available', 1)->getFleetsWithCategory();
+
+        //dd($fleetsData);
+
         $data = [
             'title'      => 'Armada Kami | Pesona Transport',
             // Mengambil semua kategori untuk dijadikan Tab/Filter
