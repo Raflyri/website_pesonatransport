@@ -53,6 +53,7 @@
                             <select name="transmission" class="form-select">
                                 <option value="Automatic" <?= ($fleet['transmission'] == 'Automatic') ? 'selected' : '' ?>>Automatic</option>
                                 <option value="Manual" <?= ($fleet['transmission'] == 'Manual') ? 'selected' : '' ?>>Manual</option>
+                                <option value="Automatic/Manual" <?= ($fleet['transmission'] == 'Automatic/Manual') ? 'selected' : '' ?>>Automatic / Manual</option>
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">

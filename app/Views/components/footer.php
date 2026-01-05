@@ -76,9 +76,11 @@
             <div class="col-md-6 text-center text-md-start">
                 <p class="small text-white-50 mb-0">&copy; <?= date('Y') ?> PT. Pesona Transport. All rights reserved.</p>
             </div>
-            <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
-                <p class="small text-white-50 mb-0">Developed by <span class="text-white fw-bold">RBeverything</span></p>
-            </div>
+            <?php if (getenv('CI_ENVIRONMENT') !== 'production') : ?>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <p class="small text-white-50 mb-0">Developed by <span class="text-white fw-bold">RBeverything</span></p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </footer>
