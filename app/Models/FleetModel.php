@@ -6,6 +6,7 @@ class FleetModel extends Model
 {
     protected $table            = 'fleets';
     protected $primaryKey       = 'id';
+    protected $returnType       = 'array';
     protected $allowedFields    = ['category_id', 'name', 'brand', 'price_per_day', 'transmission', 'seat_capacity', 'image_path', 'description', 'is_available'];
     protected $useTimestamps    = true;
 

@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= $title ?? 'Pesona Transport' ?></title>
+  <title><?= get_setting('site_name', 'Pesona Transport') ?></title>
+  <link rel="icon" href="<?= base_url(get_setting('site_icon', 'favicon.ico')) ?>">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -20,8 +21,6 @@
 </head>
 
 <body>
-
-
 
   <?= $this->include('components/header') ?>
 
@@ -42,8 +41,6 @@
 
   <?= $this->include('components/footer') ?>
 
-
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
@@ -55,6 +52,17 @@
       once: false, // Animasi hanya jalan sekali saat scroll ke bawah
       mirror: true,
       offset: 100, // Jarak trigger animasi dari bawah layar
+    });
+  </script>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar'); // Pastikan ini sesuai class navbarmu
+      if (window.scrollY > 50) { // Jika scroll lebih dari 50px
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     });
   </script>
 
