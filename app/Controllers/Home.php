@@ -6,15 +6,19 @@ use App\Models\BannersModel;
 use App\Models\FleetModel;
 use App\Models\FleetCategoryModel;
 use App\Models\ProfileModel;
+use App\Models\NewsModel;
 
 class Home extends BaseController
 {
+    protected $helpers = ['text', 'settings'];
+
     public function index()
     {
         $bannersModel = new BannersModel();
         $fleetModel = new FleetModel();
         $categoryModel = new FleetCategoryModel();
         $profileModel = new ProfileModel();
+        $newsModel = new NewsModel();
 
         $data = [
             'title' => 'Home | Pesona Transport',
@@ -24,6 +28,7 @@ class Home extends BaseController
             'fleets'  => $fleetModel->getFleetsWithCategory(),
             'categories' => $categoryModel->findAll(),
             'profile'    => $profileModel->first(),
+            'latest_news' => $newsModel->getLatestNews(3)
         ];
 
         return view('pages/home', $data);
@@ -41,7 +46,6 @@ class Home extends BaseController
         return view('pages/about', $data);
     }
 
-    // Tambahkan method ini di dalam class Home
     public function armada()
     {
         $bannersModel = new BannersModel(); // Opsional jika ingin pakai banner di halaman armada
@@ -63,5 +67,49 @@ class Home extends BaseController
         ];
 
         return view('pages/armada', $data);
+    }
+
+    public function news()
+    {
+        $newsModel = new NewsModel();
+
+        $data = [
+            'title' => 'Berita & Artikel',
+            // Ambil berita terbaru, 6 per halaman
+            'news'  => $newsModel->orderBy('created_at', 'DESC')->paginate(6),
+            'pager' => $newsModel->pager
+        ];
+
+        return view('pages/news', $data);
+    }
+
+    public function news_detail($slug = null)
+    {
+        $newsModel = new NewsModel();
+        $newsItem  = $newsModel->where('slug', $slug)->first();
+
+        if (!$newsItem) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $data = [
+            'title' => $newsItem['title'],
+            'news'  => $newsItem
+        ];
+
+        return view('pages/news_detail', $data);
+    }
+
+    // Tambahkan method ini di dalam class Home
+    public function coming_soon()
+    {
+        $profileModel = new ProfileModel(); // Supaya header/footer tetap aman datanya
+
+        $data = [
+            'title'   => 'Segera Hadir - Pesona Transport',
+            'profile' => $profileModel->first(),
+        ];
+
+        return view('pages/coming_soon', $data);
     }
 }
