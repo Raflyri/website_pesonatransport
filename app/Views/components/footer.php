@@ -36,17 +36,25 @@
                 <ul class="list-unstyled text-small">
                     <li class="mb-2"><a href="/tentang-kami" class="text-white-50 text-decoration-none hover-white">Tentang Kami</a></li>
                     <li class="mb-2"><a href="/armada" class="text-white-50 text-decoration-none hover-white">Armada</a></li>
-                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Berita</a></li>
+                    <li class="mb-2"><a href="/news" class="text-white-50 text-decoration-none hover-white">Berita</a></li>
                 </ul>
             </div>
 
             <div class="col-md-2 col-6">
                 <h6 class="fw-bold mb-3 text-uppercase text-primary small ls-1">Dukungan</h6>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Syarat & Ketentuan</a></li>
-                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Kebijakan Privasi</a></li>
-                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Bantuan</a></li>
-                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Hubungi Kami</a></li>
+                    <li class="mb-2">
+                        <a href="<?= base_url('coming-soon') ?>" class="text-white-50 text-decoration-none hover-white">Syarat & Ketentuan</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="<?= base_url('coming-soon') ?>" class="text-white-50 text-decoration-none hover-white">Kebijakan Privasi</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="<?= base_url('coming-soon') ?>" class="text-white-50 text-decoration-none hover-white">Bantuan</a>
+                    </li>
+                    <!--li class="mb-2">
+                        <a href="https://wa.me/6281234567890" target="_blank" class="text-white-50 text-decoration-none hover-white">Hubungi Kami</a>
+                    </li-->
                 </ul>
             </div>
 

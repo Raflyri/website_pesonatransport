@@ -145,8 +145,32 @@
                 </div>
             </div>
 
+            <div class="card card-info card-outline mb-4">
+                <div class="card-header">
+                    <h5 class="card-title">Konfigurasi Halaman Coming Soon</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label>Background Video (MP4 / WebM)</label>
+                        <div class="input-group">
+                            <input type="file" name="coming_soon_video" class="form-control" accept="video/mp4, video/webm">
+                        </div>
+                        <small class="text-muted">Upload video landscape agar tampilan maksimal. Ukuran rekomen < 10MB.</small>
+                    </div>
+
+                    <?php if (get_setting('coming_soon_video')) : ?>
+                        <div class="mt-2">
+                            <p>Video Aktif:</p>
+                            <video width="320" height="180" controls>
+                                <source src="<?= base_url(get_setting('coming_soon_video')) ?>" type="video/mp4">
+                                Browser Anda tidak mendukung tag video.
+                            </video>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary btn-lg btn-block mt-4 mb-5"><i class="fas fa-save"></i> Simpan Semua Perubahan</button>
-        </form>
         </form>
         <br><br>
     </div>
