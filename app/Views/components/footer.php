@@ -34,10 +34,9 @@
             <div class="col-md-2 col-6">
                 <h6 class="fw-bold mb-3 text-uppercase text-primary small ls-1">Perusahaan</h6>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Tentang Kami</a></li>
-                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Layanan</a></li>
+                    <li class="mb-2"><a href="/tentang-kami" class="text-white-50 text-decoration-none hover-white">Tentang Kami</a></li>
+                    <li class="mb-2"><a href="/armada" class="text-white-50 text-decoration-none hover-white">Armada</a></li>
                     <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Berita</a></li>
-                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Karir</a></li>
                 </ul>
             </div>
 
@@ -74,7 +73,13 @@
 
         <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-start">
-                <p class="small text-white-50 mb-0">&copy; <?= date('Y') ?> PT. Pesona Transport. All rights reserved.</p>
+                <p class="small text-white-50 mb-0">
+                    &copy; <?= date('Y') ?>
+                    <a href="https://pesonaadibatara.com/" target="_blank" class="text-white text-decoration-none fw-bold">
+                        PT. Pesona Adi Batara
+                    </a>.
+                    All rights reserved.
+                </p>
             </div>
             <?php if (getenv('CI_ENVIRONMENT') !== 'production') : ?>
                 <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
