@@ -3,9 +3,9 @@
         
         <div class="flip-card-front">
             <div class="img-wrapper position-relative" style="height: 60%;">
-                <?php if(isset($fleet['price_per_day']) && $fleet['price_per_day'] < 500000): ?>
-                    <span class="badge bg-danger position-absolute top-0 start-0 m-3 shadow-sm">Promo</span>
-                <?php endif; ?>
+                <!--?php if(isset($fleet['price_per_day']) && $fleet['price_per_day'] < 500000): ?>
+                    <span class="badge bg-danger position-absolute top-0 start-0 m-3 shadow-sm">Promo</span-->
+                <!--?php endif; ?-->
 
                 <img src="<?= !empty($fleet['image_path']) ? base_url($fleet['image_path']) : 'https://placehold.co/400x300?text=No+Image' ?>" 
                      class="w-100 h-100 object-fit-cover" 

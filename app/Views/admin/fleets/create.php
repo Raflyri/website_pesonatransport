@@ -49,6 +49,7 @@
                             <select name="transmission" class="form-select">
                                 <option value="Automatic">Automatic</option>
                                 <option value="Manual">Manual</option>
+                                <option value="Automatic/Manual">Automatic / Manual</option>
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
