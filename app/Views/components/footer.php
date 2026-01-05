@@ -5,16 +5,29 @@
     <div class="container pt-4">
         <div class="row g-4">
             <div class="col-md-4">
-                <a class="navbar-brand fw-bold text-white fs-3 mb-3 d-block" href="#">
-                    <i class="fas fa-car-side text-primary me-2"></i> PESONA<span class="text-primary">TRANSPORT</span>
-                </a>
+                <div class="footer-logo-container mb-3">
+                    <a href="<?= base_url() ?>">
+                        <img src="<?= base_url(get_setting('site_logo_footer', 'admin_assets/img/AdminLTELogo.png')) ?>"
+                            alt="Logo"
+                            class="footer-logo-responsive">
+                    </a>
+                </div>
                 <p class="text-white-50 small mb-4">
-                    Penyedia jasa sewa mobil terpercaya di Jabodetabek. Melayani kebutuhan transportasi harian, korporasi, hingga pariwisata dengan armada prima.
+                    <?= get_setting('site_desc_footer') ?>
+                    <!--Penyedia jasa sewa mobil terpercaya di Jabodetabek. Melayani kebutuhan transportasi harian, korporasi, hingga pariwisata dengan armada prima.-->
                 </p>
-                <div class="d-flex gap-3">
-                    <a href="#" class="text-white social-icon bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; text-decoration: none;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-white social-icon bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; text-decoration: none;"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white social-icon bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; text-decoration: none;"><i class="fab fa-whatsapp"></i></a>
+                <div class="d-flex gap-2">
+                    <?php if (get_setting('social_facebook')): ?>
+                        <a href="<?= get_setting('social_facebook') ?>" target="_blank" class="text-white social-icon bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; text-decoration: none;"><i class="fab fa-facebook-f"></i></a>
+                    <?php endif; ?>
+
+                    <?php if (get_setting('social_instagram')): ?>
+                        <a href="<?= get_setting('social_instagram') ?>" target="_blank" class="text-white social-icon bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; text-decoration: none;"><i class="fab fa-instagram"></i></a>
+                    <?php endif; ?>
+
+                    <?php if (get_setting('social_whatsapp')): ?>
+                        <a href="<?= get_setting('social_whatsapp') ?>" target="_blank" class="text-white social-icon bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; text-decoration: none;"><i class="fab fa-whatsapp"></i></a>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -41,12 +54,18 @@
             <div class="col-md-4">
                 <h6 class="fw-bold mb-3 text-uppercase text-primary small ls-1">Kantor Kami</h6>
                 <ul class="list-unstyled text-small text-white-50">
-                    <li class="mb-3 d-flex"><i class="fas fa-map-marker-alt text-primary me-3 mt-1"></i> The Archies Sudirman (D/H T Plaza),
-                        Tower B, Ruko B No.B4.
-                        Jl. Penjernihan I No.1 Kav.1,
-                        Jakarta Pusat 10210</li>
-                    <li class="mb-3 d-flex"><i class="fas fa-phone text-primary me-3 mt-1"></i> (021) 7788-9900</li>
-                    <li class="mb-3 d-flex"><i class="fas fa-envelope text-primary me-3 mt-1"></i> info@pesonatransport.com</li>
+                    <li class="mb-3 d-flex">
+                        <i class="fas fa-map-marker-alt text-primary me-3 mt-1"></i>
+                        <span><?= nl2br(get_setting('company_address')) ?></span>
+                    </li>
+                    <li class="mb-3 d-flex">
+                        <i class="fas fa-phone text-primary me-3 mt-1"></i>
+                        <?= get_setting('company_phone') ?>
+                    </li>
+                    <li class="mb-3 d-flex">
+                        <i class="fas fa-envelope text-primary me-3 mt-1"></i>
+                        <?= get_setting('company_email') ?>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -63,3 +82,29 @@
         </div>
     </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Cari elemen logo footer
+        const footerLogo = document.querySelector('.footer-logo-container');
+
+        if (footerLogo) {
+            // Buat Observer (Pengamat)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Jika footer masuk ke layar (isIntersecting)
+                    if (entry.isIntersecting) {
+                        footerLogo.classList.add('shining'); // Tambah class animasi
+                    } else {
+                        footerLogo.classList.remove('shining'); // Hapus class biar bisa main lagi kalau di-scroll balik
+                    }
+                });
+            }, {
+                threshold: 0.5
+            }); // Animasi jalan kalau 50% logo sudah kelihatan
+
+            // Mulai mengamati
+            observer.observe(footerLogo);
+        }
+    });
+</script>

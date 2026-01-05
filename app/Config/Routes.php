@@ -12,6 +12,7 @@ $routes->get('login', 'Auth::login');
 $routes->post('login/auth', 'Auth::attempt');
 $routes->get('logout', 'Auth::logout');
 $routes->get('/tentang-kami', 'Home::about');
+$routes->get('/armada', 'Home::armada');
 
 // app/Config/Routes.php
 
@@ -33,5 +34,8 @@ $routes->group('admin', ['filter' => 'authGuard'], function($routes) {
 
     $routes->get('profile', 'Admin\Profile::index');
     $routes->post('profile/update', 'Admin\Profile::update');
+
+    $routes->get('settings', 'Admin\Settings::index');
+    $routes->post('settings/update', 'Admin\Settings::update');
     
 });

@@ -123,3 +123,95 @@ footer.footer-custom a {
 #heroCarousel:hover .carousel-control-next {
     opacity: 1; /* Muncul penuh */
 }
+
+/* --- Settingan Logo Responsive --- */
+
+/* 1. Tampilan Default (Mobile / HP) */
+.brand-logo-responsive {
+    height: 40px; /* Ukuran pas untuk HP */
+    width: auto;
+    object-fit: contain;
+    transition: height 0.3s ease; /* Biar kalau di-resize browsernya, berubahnya mulus */
+}
+
+/* 2. Tampilan Desktop / Laptop (Layar > 768px) */
+@media (min-width: 768px) {
+    .brand-logo-responsive {
+        height: 75px; /* NAH, ini ukuran besarnya untuk Web */
+    }
+}
+
+/* --- Sticky Header Logo Animation --- */
+
+/* Transisi halus untuk Navbar dan Logo */
+.navbar, .brand-logo-responsive {
+    transition: all 0.3s ease-in-out;
+}
+
+/* KONDISI: Saat user scroll ke bawah (Laptop/Desktop) */
+@media (min-width: 768px) {
+    /* Target logo KETIKA navbar punya class 'scrolled' */
+    .navbar.scrolled .brand-logo-responsive {
+        height: 40px; /* Ukuran mengecil (sama seperti mobile) */
+    }
+    
+    /* Opsional: Tambah shadow saat scroll biar makin cantik */
+    .navbar.scrolled {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+}
+
+/* --- 1. Footer Logo Responsive --- */
+.footer-logo-responsive {
+    height: 60px; /* Ukuran default di HP */
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .footer-logo-responsive {
+        height: 100px; /* Lebih besar & gagah di Laptop/PC */
+    }
+}
+
+/* --- 2. Shine Effect (Efek Bersinar) --- */
+.footer-logo-container {
+    position: relative;
+    display: inline-block; /* Bungkus logo serapat mungkin */
+    overflow: hidden;      /* Kunci biar cahaya gak 'bocor' keluar gambar */
+    /* Opsional: border-radius biar kilatan ngikutin bentuk umum */
+    border-radius: 10px; 
+}
+
+/* Membuat elemen cahaya 'palsu' */
+.footer-logo-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%; /* Mulai dari luar kiri */
+    width: 100%;
+    height: 100%;
+    /* Gradasi putih transparan yang miring */
+    background: linear-gradient(
+        to right, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.8) 50%, 
+        rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-25deg); /* Miringkan cahaya 25 derajat */
+    pointer-events: none; /* Biar logo tetap bisa diklik meski ketutup cahaya */
+}
+
+/* Class ini akan ditempel oleh JS saat footer terlihat */
+.footer-logo-container.shining::after {
+    animation: shine-move 1.5s ease-in-out;
+}
+
+/* Definisi Gerakan Cahaya */
+@keyframes shine-move {
+    0% { left: -150%; }
+    100% { left: 150%; }
+}

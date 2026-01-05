@@ -1,0 +1,57 @@
+/* Style khusus untuk Halaman Armada */
+
+/* Card Container & Hover Effect */
+.fleet-card-hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+}
+
+.fleet-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+}
+
+/* Image Wrapper */
+.fleet-card-img-wrapper {
+    height: 220px; 
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+.fleet-card-img-wrapper img {
+    transition: transform 0.5s ease;
+}
+
+.fleet-card-hover:hover .fleet-card-img-wrapper img {
+    transform: scale(1.05); /* Efek zoom in sedikit saat hover */
+}
+
+/* Badge Kategori */
+.category-badge {
+    z-index: 2;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+/* Custom Nav Pills (Tab Kategori) */
+.nav-pills-custom .nav-link {
+    color: #6c757d;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    margin: 0 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-pills-custom .nav-link:hover {
+    background-color: #f8f9fa;
+    border-color: #cdd4db;
+}
+
+.nav-pills-custom .nav-link.active {
+    background-color: #0d6efd; /* Sesuaikan dengan warna primary brand kamu */
+    color: #fff;
+    border-color: #0d6efd;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+}

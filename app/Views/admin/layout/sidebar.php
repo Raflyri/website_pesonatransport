@@ -1,8 +1,10 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
   <div class="sidebar-brand">
     <a href="<?= base_url('admin/dashboard') ?>" class="brand-link">
-      <img src="<?= base_url('admin_assets/img/AdminLTELogo.png') ?>" alt="Logo" class="brand-image opacity-75 shadow" />
-      <span class="brand-text fw-light">Pesona Transport</span>
+      <img src="<?= base_url(get_setting('site_icon', 'admin_assets/img/AdminLTELogo.png')) ?>"
+        alt="<?= get_setting('site_name', 'Pesona Transport') ?>"
+        class="brand-image opacity-75 shadow"
+        style="max-height: 33px;"> <span class="brand-text fw-light"><?= get_setting('site_name', 'Pesona Transport') ?></span>
     </a>
   </div>
   <div class="sidebar-wrapper">
@@ -75,6 +77,12 @@
         </li>
 
         <li class="nav-header">AKUN</li>
+        <li class="nav-item">
+          <a href="<?= base_url('admin/settings') ?>" class="nav-link">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>Pengaturan</p>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="<?= base_url('logout') ?>" class="nav-link text-danger">
             <i class="nav-icon bi bi-box-arrow-right"></i>
