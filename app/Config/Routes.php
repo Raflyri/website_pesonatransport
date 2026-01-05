@@ -12,6 +12,7 @@ $routes->get('login', 'Auth::login');
 $routes->post('login/auth', 'Auth::attempt');
 $routes->get('logout', 'Auth::logout');
 $routes->get('/tentang-kami', 'Home::about');
+$routes->get('/armada', 'Home::armada');
 
 // app/Config/Routes.php
 

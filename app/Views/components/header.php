@@ -23,7 +23,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= ($uri == 'daftar-mobil') ? 'active' : '' ?>" href="#">Daftar Mobil</a>
+                    <a class="nav-link <?= ($uri == 'armada') ? 'active' : '' ?>" href="<?= base_url('/armada') ?>">Armada</a>
                 </li>
 
                 <li class="nav-item">
