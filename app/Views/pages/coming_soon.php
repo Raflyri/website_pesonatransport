@@ -16,7 +16,7 @@
 </div>
 
 <div class="coming-soon-container">
-    
+
     <div class="glass-card" data-aos="zoom-in" data-aos-duration="1000">
         <div class="mb-4 position-relative" style="height: 100px;">
             <i class="fas fa-cog gear-animation opacity-50" style="position: absolute; left: 50%; transform: translateX(-50%);"></i>
@@ -39,33 +39,36 @@
                 <i class="bi bi-whatsapp me-2 text-success"></i> Hubungi Admin
             </a>
         </div>
-        
+
         <!--small class="text-white-50">Scroll ke bawah untuk melihat efeknya &darr;</small-->
     </div>
-
-    <div class="container text-center text-white mt-5 pt-5 pb-5" style="max-width: 800px; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
+    <div class="container text-center mt-5 pt-5 pb-5 auto-invert" style="max-width: 800px;">
         <h3 class="fw-bold mb-4" data-aos="fade-up">Kenapa Harus Pesona Transport?</h3>
+
         <div class="row g-4">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="p-3 bg-dark bg-opacity-50 rounded-4 border border-secondary">
-                    <i class="bi bi-shield-check fs-1 text-warning mb-3"></i>
-                    <h5>Aman & Terpercaya</h5>
+                <div class="p-4 rounded-4 card-box">
+                    <i class="bi bi-shield-check fs-1 mb-3 d-block"></i>
+                    <h5 class="fw-bold">Aman & Terpercaya</h5>
                 </div>
             </div>
+
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="p-3 bg-dark bg-opacity-50 rounded-4 border border-secondary">
-                    <i class="bi bi-car-front-fill fs-1 text-warning mb-3"></i>
-                    <h5>Armada Prima</h5>
+                <div class="p-4 rounded-4 card-box">
+                    <i class="bi bi-car-front-fill fs-1 mb-3 d-block"></i>
+                    <h5 class="fw-bold">Armada Prima</h5>
                 </div>
             </div>
+
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="p-3 bg-dark bg-opacity-50 rounded-4 border border-secondary">
-                    <i class="bi bi-currency-dollar fs-1 text-warning mb-3"></i>
-                    <h5>Harga Kompetitif</h5>
+                <div class="p-4 rounded-4 card-box">
+                    <i class="bi bi-currency-dollar fs-1 mb-3 d-block"></i>
+                    <h5 class="fw-bold">Harga Kompetitif</h5>
                 </div>
             </div>
         </div>
-        <!--p class="mt-5 text-white-50">&copy; <?= date('Y') ?> Pesona Transport Indonesia</p-->
+
+        <!--p class="mt-5 opacity-75">&copy; <?= date('Y') ?> Pesona Transport Indonesia</p-->
     </div>
 
 </div>
@@ -73,20 +76,20 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const video = document.getElementById('parallaxVideo');
-        
+
         // Fungsi update posisi
         function updateParallax() {
-            if(!video) return;
+            if (!video) return;
 
             let scrollPosition = window.scrollY;
-            
+
             // LOGIKA PARALLAX BARU:
             // Kita tetap pertahankan 'translate(-50%, -50%)' supaya video tetap di tengah
             // Lalu kita tambahkan gerakan vertikal (+ translateY)
-            
+
             let translateY = scrollPosition * 0.4; // Kecepatan parallax
-            let scaleValue = 1.1 + (scrollPosition * 0.0005); 
-            let blurValue = Math.min(scrollPosition * 0.02, 10); 
+            let scaleValue = 1.1 + (scrollPosition * 0.0005);
+            let blurValue = Math.min(scrollPosition * 0.02, 10);
 
             // Gabungkan centering CSS + Parallax JS
             video.style.transform = `translate3d(-50%, calc(-50% + ${translateY}px), 0) scale(${scaleValue})`;
@@ -97,7 +100,7 @@
         window.addEventListener('scroll', () => {
             window.requestAnimationFrame(updateParallax);
         });
-        
+
         // Jalankan sekali saat load agar posisi awal benar
         updateParallax();
     });
@@ -105,8 +108,13 @@
 
 <style>
     /* Helper untuk efek hover tombol */
-    .hover-scale { transition: transform 0.2s; }
-    .hover-scale:hover { transform: scale(1.05); }
+    .hover-scale {
+        transition: transform 0.2s;
+    }
+
+    .hover-scale:hover {
+        transform: scale(1.05);
+    }
 </style>
 
 <?= $this->endSection() ?>

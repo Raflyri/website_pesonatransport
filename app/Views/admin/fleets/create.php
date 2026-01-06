@@ -29,7 +29,7 @@
                             <label class="form-label">Kategori</label>
                             <select name="category_id" class="form-select" required>
                                 <option value="">-- Pilih Kategori --</option>
-                                <?php foreach($categories as $cat): ?>
+                                <?php foreach ($categories as $cat): ?>
                                     <option value="<?= $cat['id'] ?>"><?= esc($cat['name']) ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -46,10 +46,10 @@
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Transmisi</label>
-                            <select name="transmission" class="form-select">
+                            <select name="transmission" class="form-select" required>
                                 <option value="Automatic">Automatic</option>
                                 <option value="Manual">Manual</option>
-                                <option value="Automatic/Manual">Automatic / Manual</option>
+                                <option value="Automatic / Manual">Automatic / Manual</option>
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -64,6 +64,27 @@
                                     Tersedia (Ready)
                                 </label>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Jenis Bahan Bakar</label>
+                            <select name="fuel_type" class="form-select" required>
+                                <option value="Bensin">Bensin</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Bensin / Diesel">Bensin / Diesel</option>
+                                <option value="Listrik">Listrik</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Opsi Layanan Sewa</label>
+                            <select name="rental_service" class="form-select" required>
+                                <option value="Keduanya">Bisa Lepas Kunci & Dengan Supir</option>
+                                <option value="Dengan Supir">Hanya Dengan Supir</option>
+                                <option value="Lepas Kunci">Hanya Lepas Kunci</option>
+                            </select>
                         </div>
                     </div>
 

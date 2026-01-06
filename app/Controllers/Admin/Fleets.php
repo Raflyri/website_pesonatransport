@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Controllers\Admin;
+
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\FleetModel;
 use App\Models\FleetCategoryModel;
@@ -45,6 +47,8 @@ class Fleets extends ResourceController
             'brand'       => $this->request->getPost('brand'),
             'price_per_day' => $this->request->getPost('price_per_day'),
             'transmission' => $this->request->getPost('transmission'),
+            'fuel_type'     => $this->request->getPost('fuel_type'),
+            'rental_service' => $this->request->getPost('rental_service'),
             'seat_capacity' => $this->request->getPost('seat_capacity'),
             'image_path'  => $imagePath,
             'description' => $this->request->getPost('description'),
@@ -71,6 +75,8 @@ class Fleets extends ResourceController
             'brand'       => $this->request->getPost('brand'),
             'price_per_day' => $this->request->getPost('price_per_day'),
             'transmission' => $this->request->getPost('transmission'),
+            'fuel_type'     => $this->request->getPost('fuel_type'),
+            'rental_service' => $this->request->getPost('rental_service'),
             'seat_capacity' => $this->request->getPost('seat_capacity'),
             'description' => $this->request->getPost('description'),
             'is_available' => $this->request->getPost('is_available') ? 1 : 0,

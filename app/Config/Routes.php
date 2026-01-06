@@ -26,6 +26,8 @@ $routes->get('/news/(:segment)', 'Home::news_detail/$1');
 
 $routes->get('/coming-soon', 'Home::coming_soon');
 
+$routes->get('/search', 'Search::index');
+
 $routes->get('secreetMigration-12', function() {
     $migrate = \Config\Services::migrations();
     try {

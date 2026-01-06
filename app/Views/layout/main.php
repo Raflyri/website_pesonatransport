@@ -17,6 +17,8 @@
 
   <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
 
+  <link href="<?= base_url('css/search-custom.css?v=' . time()) ?>" rel="stylesheet">
+
   <?= $this->renderSection('styles') ?>
 </head>
 

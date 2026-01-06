@@ -100,3 +100,35 @@ body, html {
     80% { opacity: 1; }
     100% { transform: translateX(50px); opacity: 0; }
 }
+
+.auto-invert {
+    /* Set warna dasar Putih */
+    color: #fff !important; 
+    
+    /* KUNCI UTAMA: Difference Mode */
+    /* Ini akan membalik warna teks berdasarkan background di belakangnya */
+    mix-blend-mode: difference;
+    
+    /* Hapus shadow agar teks tetap tajam saat di-invert */
+    text-shadow: none !important;
+    
+    /* Pastikan layer ini ada di atas video */
+    position: relative; 
+    z-index: 20; 
+}
+
+/* Penyesuaian untuk kartu agar transparan & ikut berubah warna */
+.auto-invert .card-box {
+    /* Kita buat background transparan total atau sangat tipis */
+    /* Supaya teks di dalamnya bisa bereaksi langsung dengan video */
+    background: rgba(255, 255, 255, 0.1); 
+    border: 2px solid #fff; /* Border putih agar ikut kena invert */
+    color: #fff !important;
+}
+
+/* Override warna icon & heading agar ikut jadi putih (biar bisa di-invert) */
+.auto-invert h5, 
+.auto-invert i, 
+.auto-invert h3 {
+    color: #fff !important; 
+}
