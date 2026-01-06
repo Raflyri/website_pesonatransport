@@ -1,0 +1,84 @@
+/* --- 1. Animasi Search Box (Fade Up) --- */
+.animate-field {
+    animation: fadeInUpSmooth 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes fadeInUpSmooth {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 2. Unavailable Fleet (Efek Gelap) --- */
+.unavailable-unit .room-item {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.unavailable-unit:hover .room-item {
+    filter: grayscale(50%);
+    opacity: 0.9;
+}
+
+/* --- 3. Pagination Unik (Bulat & Floating) --- */
+.pagination-wrapper {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    gap: 12px;
+    align-items: center;
+    border: none;
+}
+
+.pagination .page-item .page-link {
+    border-radius: 50% !important;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: #fff;
+    color: #555;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin: 0;
+}
+
+.pagination .page-item .page-link:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: #fff;
+    color: var(--color-primary, #0d6efd); /* Fallback color */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.pagination .page-item.active .page-link {
+    background: linear-gradient(135deg, var(--color-primary, #0d6efd) 0%, #0a58ca 100%);
+    color: #fff;
+    transform: scale(1.15);
+    box-shadow: 0 8px 15px rgba(13, 110, 253, 0.4);
+    z-index: 2;
+}
+
+.pagination .page-link:focus {
+    box-shadow: none;
+}
+
+.pagination .page-link span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
