@@ -2,15 +2,33 @@
 
 <?= $this->section('content') ?>
 
-<div class="container-fluid bg-primary py-5 mb-5 hero-header" style="margin-top: 100px;">
-    <div class="container py-5">
+<?php $headerVideo = get_setting('search_header_video'); ?>
+
+<div class="container-fluid position-relative py-5 mb-5 hero-header overflow-hidden" style="margin-top: 80px; min-height: 400px;">
+
+    <?php if (!empty($headerVideo)): ?>
+        <div id="video-parallax-wrapper" style="position: absolute; top: 0; left: 0; width: 100%; height: 140%; z-index: 0; overflow: hidden; transform: translateY(0);">
+            <video autoplay muted loop playsinline
+                style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="<?= base_url($headerVideo) ?>" type="video/mp4">
+            </video>
+        </div>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+    <?php else: ?>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary), #000); z-index: 0;"></div>
+    <?php endif; ?>
+
+    <div class="container py-5 position-relative" style="z-index: 2;">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-                <h1 class="display-3 text-white animated slideInDown">Pilih Armada Anda</h1>
-                <p class="text-white">
+                <h1 class="display-3 text-white animated slideInDown fw-bold">Pilih Armada Anda</h1>
+                <p class="text-white fs-5 mt-3">
                     Perjalanan dari <strong><?= esc($searchParams['pickup']) ?></strong> ke <strong><?= esc($searchParams['dropoff']) ?></strong><br>
-                    Durasi: <strong><?= esc($searchParams['duration']) ?> Hari</strong>
+                    Durasi: <span class="badge bg-warning text-dark"><?= esc($searchParams['duration']) ?> Hari</span>
                 </p>
+                <a href="<?= base_url('/') ?>#pencarian" class="btn btn-outline-light rounded-pill btn-sm mt-3 px-4">
+                    <i class="fas fa-search me-1"></i> Ubah Pencarian
+                </a>
             </div>
         </div>
     </div>
@@ -152,6 +170,15 @@
             // Hasilnya jadi: .../search?tipe_layanan=sopir&start_date=...&page=2
             link.href = window.location.pathname + '?' + currentUrlParams.toString();
         });
+    });
+
+    document.addEventListener("scroll", function() {
+        const videoWrapper = document.getElementById("video-parallax-wrapper");
+        if (videoWrapper) {
+            let scrollPosition = window.scrollY;
+            // Efek Parallax: Geser video ke bawah lebih lambat dari scroll halaman (speed 0.5)
+            videoWrapper.style.transform = "translateY(" + (scrollPosition * 0.5) + "px)";
+        }
     });
 </script>
 

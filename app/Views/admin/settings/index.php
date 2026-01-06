@@ -167,6 +167,32 @@
                             </video>
                         </div>
                     <?php endif; ?>
+
+                </div>
+            </div>
+
+            <div class="card card-info card-outline mb-4">
+                <div class="card-header">
+                    <h5 class="card-title">Konfigurasi Header Pencarian (Parallax)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label>Video Background Header (MP4 / WebM)</label>
+                        <div class="input-group">
+                            <input type="file" name="search_header_video" class="form-control" accept="video/mp4, video/webm">
+                        </div>
+                        <small class="text-muted">Video ini akan muncul di header hasil pencarian dengan efek parallax.</small>
+                    </div>
+
+                    <?php if (get_setting('search_header_video')) : ?>
+                        <div class="mt-2">
+                            <p class="mb-1">Video Aktif:</p>
+                            <video width="320" height="180" controls style="border-radius: 8px; border: 1px solid #ddd;">
+                                <source src="<?= base_url(get_setting('search_header_video')) ?>" type="video/mp4">
+                                Browser Anda tidak mendukung tag video.
+                            </video>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
 

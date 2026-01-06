@@ -42,6 +42,9 @@ class Settings extends BaseController
 
     public function update()
     {
+
+        $model = new SettingModel();
+
         // 1. Update Data Text (Nama, Desc, Kontak, Sosmed)
         $textFields = [
             'site_name',
@@ -69,6 +72,7 @@ class Settings extends BaseController
 
         // 3. Update File Video (BARU)
         $this->handleVideoUpload('coming_soon_video');
+        $this->handleVideoUpload('search_header_video');
 
         return redirect()->to('/admin/settings')->with('message', 'Pengaturan berhasil diperbarui');
     }
