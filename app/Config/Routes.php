@@ -21,12 +21,13 @@ $routes->get('/armada', 'Home::armada');
 
 // --- INI ROUTE BERITA PUBLIK YANG BENAR ---
 // Pastikan ini ada DI ATAS group admin
-$routes->get('/news', 'Home::news'); 
-$routes->get('/news/(:segment)', 'Home::news_detail/$1');
+$routes->get('/news', 'News::index'); 
+$routes->get('/news/(:segment)', 'News::detail/$1');
 
 $routes->get('/coming-soon', 'Home::coming_soon');
 
 $routes->get('/search', 'Search::index');
+
 
 $routes->get('secreetMigration-12', function() {
     $migrate = \Config\Services::migrations();

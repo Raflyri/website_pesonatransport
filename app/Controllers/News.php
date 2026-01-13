@@ -12,7 +12,7 @@ class News extends BaseController
     public function index()
     {
         $model = new NewsModel();
-        
+
         $data = [
             'title' => 'Berita & Artikel',
             'news'  => $model->orderBy('created_at', 'DESC')->paginate(6), // 6 berita per halaman
@@ -31,10 +31,41 @@ class News extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
+        /**
+         * $data = [
+         * 'title' => $news['title'],
+         * 'news'  => $news
+         * ];
+         */
+
         $data = [
             'title' => $news['title'],
-            'news'  => $news
+            'news_item' => $news, // <--- UBAH JADI 'news_item' (Biar match sama View)
+            // Tambahkan juga ini jika ingin sidebar berfungsi:
+            'sidebar_news' => $model->where('slug !=', $slug)->orderBy('created_at', 'DESC')->findAll(3) 
         ];
+
+        return view('pages/news_detail', $data);
+    }
+
+    public function detail($slug = null)
+    {
+        $newsModel = new \App\Models\NewsModel();
+
+        // Cari berita berdasarkan slug
+        $data['news_item'] = $newsModel->where('slug', $slug)->first();
+
+        // Jika tidak ketemu, lempar error 404
+        if (empty($data['news_item'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Berita dengan judul: ' . $slug . ' tidak ditemukan.');
+        }
+
+        // Ambil berita terbaru LAINNYA untuk sidebar (optional, biar menarik)
+        $data['sidebar_news'] = $newsModel->where('slug !=', $slug)
+            ->orderBy('created_at', 'DESC')
+            ->findAll(3);
+
+        $data['title'] = $data['news_item']['title'];
 
         return view('pages/news_detail', $data);
     }

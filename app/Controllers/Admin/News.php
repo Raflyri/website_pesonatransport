@@ -2,6 +2,7 @@
 // app/Controllers/Admin/News.php
 
 namespace App\Controllers\Admin;
+
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\NewsModel;
 
@@ -34,9 +35,9 @@ class News extends ResourceController
         }
 
         $title = $this->request->getPost('title');
-        
+
         // Buat slug otomatis dari judul
-        $slug = url_title($title, '-', true); 
+        $slug = url_title($title, '-', true);
 
         $data = [
             'title'      => $title,
@@ -86,4 +87,5 @@ class News extends ResourceController
         $this->model->delete($id);
         return redirect()->to('admin/news')->with('message', 'Berita dihapus');
     }
+
 }

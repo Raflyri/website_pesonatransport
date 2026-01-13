@@ -6,15 +6,32 @@
 
 <?= $this->section('content') ?>
 
-<section class="bg-light hero-spacer">
-    <div class="container">
+<section class="hero-armada position-relative d-flex align-items-center">
+    <div class="hero-bg-overlay"></div>
+
+    <div class="container position-relative z-2">
         <div class="row align-items-center">
-            <div class="col-md-6">
-                <h1 class="fw-bold display-5 text-dark">Armada Kami</h1>
-                <p class="lead text-muted">Pilihan kendaraan terbaik untuk menemani perjalanan bisnis maupun liburan Anda.</p>
+            <div class="col-lg-7">
+                <!--<nav aria-label="breadcrumb" class="mb-3">
+                    <ol class="breadcrumb bg-transparent p-0 m-0">
+                        <li class="breadcrumb-item">
+                            <a href="<?= base_url('/') ?>" class="text-white-50 text-decoration-none small">
+                                <i class="fas fa-home me-1"></i> Home
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active text-white small" aria-current="page">Armada</li>
+                    </ol>
+                </nav>-->
+
+                <h1 class="display-4 fw-bold text-white mb-3">Armada Kami</h1>
+                <p class="lead text-white-50 mb-0">
+                    Temukan kendaraan yang pas untuk setiap momen perjalanan Anda. <br class="d-none d-md-block">
+                    Mulai dari City Car irit hingga Luxury Bus yang nyaman.
+                </p>
             </div>
-            <div class="col-md-6 text-end d-none d-md-block">
-                <i class="fas fa-car-side fa-10x text-black-50 opacity-25"></i>
+
+            <div class="col-lg-5 text-end d-none d-lg-block">
+                <i class="fas fa-car-side fa-10x text-white opacity-10 floating-icon"></i>
             </div>
         </div>
     </div>
@@ -82,7 +99,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-dark text-white text-center">
+<section class="py-5 bg-dark text-center auto-contrast" id="cta-section">
     <div class="container">
         <h2 class="mb-3">Butuh Kendaraan Khusus?</h2>
         <p class="mb-4">Hubungi tim kami untuk permintaan kustomisasi atau sewa jangka panjang.</p>
