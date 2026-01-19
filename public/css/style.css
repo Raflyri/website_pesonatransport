@@ -4,7 +4,7 @@
     --color-accent: #fd0102;
     --color-dark: #0a2e52;
     --color-light: #f8f9fa;
-    --font-heading: 'Poppins', sans-serif; /* Opsional, modern font */
+    --font-heading: 'Poppins', sans-serif;
 }
 
 body {
@@ -230,4 +230,79 @@ footer.footer-custom a {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Update di style.css */
+#cta-section {
+    background-color: var(--color-light) !important; /* Biru Branding */
+    /* background-color: #f8f9fa !important; */ /* Coba ganti ini jadi terang, teks otomatis jadi hitam! */
+    transition: background-color 0.3s;
+}
+
+/* --- HERO ARMADA STYLE --- */
+
+.hero-armada {
+    /* Gradient Warna Brand: Biru Gelap ke Biru Terang */
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+    
+    /* PENTING: Padding Top Besar untuk kompensasi Floating Header */
+    padding-top: 180px; 
+    padding-bottom: 100px;
+    
+    min-height: 450px; /* Tinggi minimal agar gagah */
+    overflow: hidden;  /* Biar icon dekorasi gak keluar kotak */
+    margin-bottom: 0;
+}
+
+/* Pola Titik-titik Halus di Background (Modern Look) */
+.hero-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px; /* Jarak antar titik */
+    opacity: 0.5;
+}
+
+/* Animasi Icon Melayang Halus */
+.floating-icon {
+    animation: floatCar 3s ease-in-out infinite;
+}
+
+@keyframes floatCar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* --- HERO PAGE STYLE (Global untuk Halaman Dalam) --- */
+
+.hero-page {
+    /* Gradient Warna Brand: Biru Gelap ke Biru Terang */
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+    
+    /* PENTING: Padding Top Besar untuk kompensasi Floating Header */
+    padding-top: 180px; 
+    padding-bottom: 100px;
+    
+    min-height: 450px; /* Tinggi minimal agar gagah */
+    overflow: hidden;  /* Biar icon dekorasi gak keluar kotak */
+    margin-bottom: 0;
+}
+
+/* Pola Titik-titik Halus di Background */
+.hero-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px; /* Jarak antar titik */
+    opacity: 0.5;
+}
+
+/* Animasi Icon Melayang Halus */
+.floating-icon {
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }

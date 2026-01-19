@@ -47,7 +47,22 @@
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+
+  <script>
+    // Inisialisasi Rellax
+    var rellax = new Rellax('.rellax', {
+      speed: -2,
+      center: true, // Agar elemen terpusat saat di tengah layar
+      wrapper: null,
+      round: true,
+      vertical: true,
+      horizontal: false
+    });
+  </script>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <script>
     AOS.init({
       duration: 800, // Durasi animasi (ms)
@@ -68,12 +83,42 @@
     });
   </script>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const elements = document.querySelectorAll('.auto-contrast');
+
+      elements.forEach(el => {
+        // 1. Ambil warna background elemen
+        const bgColor = window.getComputedStyle(el).backgroundColor;
+
+        // 2. Konversi RGB ke Luminance (Kecerahan)
+        const rgb = bgColor.match(/\d+/g);
+        if (rgb) {
+          const r = parseInt(rgb[0]);
+          const g = parseInt(rgb[1]);
+          const b = parseInt(rgb[2]);
+
+          // Rumus kecerahan mata manusia (HSP Color Model)
+          const brightness = Math.sqrt(
+            0.299 * (r * r) +
+            0.587 * (g * g) +
+            0.114 * (b * b)
+          );
+
+          // 3. Tentukan warna teks (Threshold biasanya 127.5)
+          if (brightness > 130) {
+            el.classList.remove('text-white');
+            el.classList.add('text-dark');
+          } else {
+            el.classList.remove('text-dark');
+            el.classList.add('text-white');
+          }
+        }
+      });
+    });
+  </script>
+
   <?= $this->renderSection('scripts') ?>
-</body>
-
-</html>
-
-<?= $this->renderSection('scripts') ?>
 </body>
 
 </html>
