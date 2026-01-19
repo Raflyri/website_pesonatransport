@@ -14,6 +14,8 @@ class Home extends BaseController
 
     public function index()
     {
+        //echo 10/0;
+
         $bannersModel = new BannersModel();
         $fleetModel = new FleetModel();
         $categoryModel = new FleetCategoryModel();
@@ -75,8 +77,7 @@ class Home extends BaseController
 
         $data = [
             'title' => 'Berita & Artikel',
-            // Ambil berita terbaru, 6 per halaman
-            'news'  => $newsModel->orderBy('created_at', 'DESC')->paginate(6),
+            'news' => $newsModel->getPublishedNews()->paginate(6),
             'pager' => $newsModel->pager
         ];
 

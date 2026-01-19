@@ -30,6 +30,7 @@
                             <th style="width: 80px">Cover</th>
                             <th>Judul Berita</th>
                             <th>Kategori</th>
+                            <th>Tanggal Dibuat</th>
                             <th>Tanggal Tayang</th>
                             <th style="width: 150px">Aksi</th>
                         </tr>
@@ -56,6 +57,9 @@
                                 </td>
                                 <td>
                                     <small><?= date('d M Y', strtotime($item['created_at'])) ?></small>
+                                </td>
+                                <td>
+                                    <small><?= date('d M Y', strtotime($item['published_at'])) ?></small>
                                 </td>
                                 <td>
                                     <a href="<?= base_url('admin/news/' . $item['id'] . '/edit') ?>" class="btn btn-sm btn-warning" title="Edit">

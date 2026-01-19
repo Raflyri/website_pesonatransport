@@ -36,7 +36,7 @@
                 <ul class="list-unstyled text-small">
                     <li class="mb-2"><a href="/tentang-kami" class="text-white-50 text-decoration-none hover-white">Tentang Kami</a></li>
                     <li class="mb-2"><a href="/armada" class="text-white-50 text-decoration-none hover-white">Armada</a></li>
-                    <li class="mb-2"><a href="/news" class="text-white-50 text-decoration-none hover-white">Berita</a></li>
+                    <li class="mb-2"><a href="/news" class="text-white-50 text-decoration-none hover-white">Artikel dan Berita</a></li>
                 </ul>
             </div>
 
