@@ -12,10 +12,22 @@ class News extends BaseController
     {
         $model = new NewsModel();
 
+        $keyword = $this->request->getGet('keyword');
+
+        $query = $model->getPublishedNews();
+
+        if ($keyword) {
+            $query->groupStart()
+                ->like('title', $keyword)
+                ->orLike('content', $keyword)
+                ->groupEnd();
+        }
+
         $data = [
             'title' => 'Berita & Artikel',
             'news'  => $model->getPublishedNews()->paginate(6),
-            'pager' => $model->pager
+            'pager' => $model->pager,
+            'keyword' => $keyword
         ];
 
         return view('pages/news', $data);

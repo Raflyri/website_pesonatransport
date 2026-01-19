@@ -22,6 +22,16 @@
 </section>
 
 <div class="container mb-5 mt-5">
+    <?php if (!empty($keyword)) : ?>
+        <div class="mb-4">
+            <h4 class="fw-bold text-dark">
+                Menampilkan hasil pencarian untuk: <span class="text-primary">"<?= esc($keyword); ?>"</span>
+            </h4>
+            <a href="/news" class="btn btn-sm btn-outline-secondary mt-2">
+                <i class="fas fa-arrow-left me-1"></i> Kembali ke Semua Berita
+            </a>
+        </div>
+    <?php endif; ?>
     <div class="row g-4">
         <?php if ($news): ?>
             <?php foreach ($news as $item) : ?>
@@ -64,7 +74,7 @@
     </div>
 
     <div class="mt-5 d-flex justify-content-center">
-        <?= $pager->links() ?>
+        <?= $pager->links('default', 'round_pagination') ?>
     </div>
 </div>
 
