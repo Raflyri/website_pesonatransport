@@ -21,7 +21,7 @@ $routes->get('/armada', 'Home::armada');
 
 // --- INI ROUTE BERITA PUBLIK YANG BENAR ---
 // Pastikan ini ada DI ATAS group admin
-$routes->get('/news', 'News::index'); 
+$routes->get('/news', 'News::index');
 $routes->get('/news/(:segment)', 'News::detail/$1');
 
 $routes->get('/coming-soon', 'Home::coming_soon');
@@ -29,28 +29,32 @@ $routes->get('/coming-soon', 'Home::coming_soon');
 $routes->get('/search', 'Search::index');
 
 
-$routes->get('secreetMigration-12', function() {
-    $migrate = \Config\Services::migrations();
-    try {
-        $migrate->latest();
-        echo "Migrasi Sukses!";
-    } catch (\Throwable $e) {
-        echo "Gagal: " . $e->getMessage();
-    }
-});
+/**
+ * 
+ * $routes->get('secreetMigration-12', function() {
+ * $migrate = \Config\Services::migrations();
+ * try {
+ *      $migrate->latest();
+ *      echo "Migrasi Sukses!";
+ *  } catch (\Throwable $e) {
+ *      echo "Gagal: " . $e->getMessage();
+ *  }
+ * });
+ * 
+ * */
 
 // app/Config/Routes.php
 
-$routes->group('admin', ['filter' => 'authGuard'], function($routes) {
+$routes->group('admin', ['filter' => 'authGuard'], function ($routes) {
     $routes->addRedirect('/', 'admin/dashboard');
     $routes->get('dashboard', 'Admin\Dashboard::index');
-    
+
     $routes->resource('banners', ['controller' => 'Admin\Banners']);
-    
+
     $routes->resource('fleets', ['controller' => 'Admin\Fleets']);
-    
+
     $routes->resource('news', ['controller' => 'Admin\News']);
-    
+
     $routes->get('settings', 'Admin\Settings::index');
     $routes->post('settings/update', 'Admin\Settings::update');
 
@@ -62,5 +66,4 @@ $routes->group('admin', ['filter' => 'authGuard'], function($routes) {
 
     $routes->get('settings', 'Admin\Settings::index');
     $routes->post('settings/update', 'Admin\Settings::update');
-    
 });

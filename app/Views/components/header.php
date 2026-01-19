@@ -31,6 +31,10 @@
                 </li-->
 
                 <li class="nav-item">
+                    <a class="nav-link <?= ($uri == 'news') ? 'active' : '' ?>" href="<?= base_url('/news') ?>">Artikel & Berita</a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link <?= ($uri == 'tentang-kami') ? 'active' : '' ?>" href="<?= base_url('/tentang-kami') ?>">Tentang Kami</a>
                 </li>
 

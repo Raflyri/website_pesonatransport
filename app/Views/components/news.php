@@ -33,7 +33,7 @@
                             <div class="card-footer bg-white border-0 pt-0 pb-3">
                                 <small class="text-muted">
                                     <i class="far fa-clock me-1"></i> 
-                                    <?= date('d M Y', strtotime($news['created_at'])); ?>
+                                    <?= date('d M Y', strtotime($news['published_at'])); ?>
                                 </small>
                             </div>
                         </div>

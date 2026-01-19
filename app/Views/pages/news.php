@@ -2,14 +2,26 @@
 
 <?= $this->section('content') ?>
 
-<div class="bg-primary py-5 mb-5 text-white text-center" style="margin-top: 100px;">
-    <div class="container">
-        <h1 class="fw-bold display-5">Berita & Artikel</h1>
-        <p class="lead">Informasi terbaru, tips berkendara, dan promo menarik.</p>
-    </div>
-</div>
+<section class="hero-page position-relative d-flex align-items-center overflow-hidden">
+    <div class="hero-bg-overlay rellax" data-rellax-speed="-2"></div>
 
-<div class="container mb-5">
+    <div class="container position-relative z-2">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h1 class="display-4 fw-bold text-white mb-3" data-aos="fade-up">Berita & Artikel</h1>
+                <p class="lead text-white-50 mb-0" data-aos="fade-up" data-aos-delay="200">
+                    Informasi terbaru, tips berkendara, dan promo menarik.
+                </p>
+            </div>
+
+            <div class="col-lg-5 text-end d-none d-lg-block" data-aos="fade-left" data-aos-delay="300">
+                <i class="far fa-newspaper fa-10x text-white opacity-10 floating-icon"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container mb-5 mt-5">
     <div class="row g-4">
         <?php if ($news): ?>
             <?php foreach ($news as $item) : ?>
@@ -25,8 +37,8 @@
                         <div class="card-body">
                             <span class="badge bg-primary bg-opacity-10 text-primary mb-2"><?= esc($item['category']) ?></span>
                             <h5 class="card-title fw-bold mt-1">
-                                <a href="/news/<?= esc($news['slug']); ?>" class="text-dark text-decoration-none">
-                                    <?= esc($news['title']); ?>
+                                <a href="/news/<?= esc($item['slug']); ?>" class="text-dark text-decoration-none">
+                                    <?= esc($item['title']); ?>
                                 </a>
                             </h5>
                             <p class="card-text text-muted small">
@@ -35,8 +47,8 @@
                         </div>
 
                         <div class="card-footer bg-white border-0 pt-0 pb-3 d-flex justify-content-between align-items-center">
-                            <small class="text-muted"><i class="far fa-clock me-1"></i> <?= date('d M Y', strtotime($item['created_at'])) ?></small>
-                            <a href="<?= base_url('news/' . $item['slug']) ?>" class="btn btn-sm btn-outline-primary rounded-pill">Baca</a>
+                            <small class="text-muted"><i class="far fa-clock me-1"></i> <?= date('d M Y', strtotime($item['published_at'])) ?></small>
+                            <!--a href="<?= base_url('news/' . $item['slug']) ?>" class="btn btn-sm btn-outline-primary rounded-pill">Baca</a-->
                         </div>
                     </div>
                 </div>

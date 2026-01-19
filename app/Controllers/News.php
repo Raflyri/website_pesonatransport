@@ -6,7 +6,6 @@ use App\Models\NewsModel;
 
 class News extends BaseController
 {
-    // Load helper settings agar tidak error di header/footer
     protected $helpers = ['settings', 'text'];
 
     public function index()
@@ -15,57 +14,48 @@ class News extends BaseController
 
         $data = [
             'title' => 'Berita & Artikel',
-            'news'  => $model->orderBy('created_at', 'DESC')->paginate(6), // 6 berita per halaman
+            'news'  => $model->getPublishedNews()->paginate(6),
             'pager' => $model->pager
         ];
 
         return view('pages/news', $data);
     }
 
-    public function show($slug = null)
+    public function detail($slug = null)
     {
-        $model = new NewsModel();
-        $news  = $model->where('slug', $slug)->first();
+        $newsModel = new NewsModel();
 
-        if (!$news) {
+        // 1. Cek Session: Apakah yang akses adalah Admin?
+        // Pastikan key session 'isLoggedIn' sesuai dengan Auth Controller kakak (biasanya 'logged_in' atau 'isLoggedIn')
+        $isAdmin = session()->get('isLoggedIn');
+
+        // 2. Siapkan Query
+        $query = $newsModel->where('slug', $slug);
+
+        // 3. Terapkan Filter Tanggal HANYA jika BUKAN Admin
+        if (!$isAdmin) {
+            $query->where('published_at <=', date('Y-m-d H:i:s'));
+        }
+
+        $newsItem = $query->first();
+
+        // Jika tidak ketemu (atau user biasa coba akses future post) -> 404
+        if (!$newsItem) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        /**
-         * $data = [
-         * 'title' => $news['title'],
-         * 'news'  => $news
-         * ];
-         */
-
-        $data = [
-            'title' => $news['title'],
-            'news_item' => $news, // <--- UBAH JADI 'news_item' (Biar match sama View)
-            // Tambahkan juga ini jika ingin sidebar berfungsi:
-            'sidebar_news' => $model->where('slug !=', $slug)->orderBy('created_at', 'DESC')->findAll(3) 
-        ];
-
-        return view('pages/news_detail', $data);
-    }
-
-    public function detail($slug = null)
-    {
-        $newsModel = new \App\Models\NewsModel();
-
-        // Cari berita berdasarkan slug
-        $data['news_item'] = $newsModel->where('slug', $slug)->first();
-
-        // Jika tidak ketemu, lempar error 404
-        if (empty($data['news_item'])) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Berita dengan judul: ' . $slug . ' tidak ditemukan.');
-        }
-
-        // Ambil berita terbaru LAINNYA untuk sidebar (optional, biar menarik)
-        $data['sidebar_news'] = $newsModel->where('slug !=', $slug)
-            ->orderBy('created_at', 'DESC')
+        // Ambil sidebar (tetap difilter tanggal agar pengunjung tidak lihat bocoran di sidebar)
+        // Kecuali Kakak mau Admin lihat sidebar future post juga, logic-nya bisa disamakan.
+        $sidebarNews = $newsModel->where('slug !=', $slug)
+            ->where('published_at <=', date('Y-m-d H:i:s'))
+            ->orderBy('published_at', 'DESC')
             ->findAll(3);
 
-        $data['title'] = $data['news_item']['title'];
+        $data = [
+            'title'        => $newsItem['title'],
+            'news_item'    => $newsItem,
+            'sidebar_news' => $sidebarNews
+        ];
 
         return view('pages/news_detail', $data);
     }

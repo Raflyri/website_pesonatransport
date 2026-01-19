@@ -35,9 +35,9 @@ class News extends ResourceController
         }
 
         $title = $this->request->getPost('title');
-
-        // Buat slug otomatis dari judul
         $slug = url_title($title, '-', true);
+
+        $publishedAt = $this->request->getPost('published_at');
 
         $data = [
             'title'      => $title,
@@ -45,6 +45,7 @@ class News extends ResourceController
             'category'   => $this->request->getPost('category'),
             'content'    => $this->request->getPost('content'),
             'image_path' => $imagePath,
+            'published_at' => $publishedAt,
         ];
 
         $this->model->save($data);
@@ -62,12 +63,15 @@ class News extends ResourceController
         $title = $this->request->getPost('title');
         $slug = url_title($title, '-', true);
 
+        $publishedAt = $this->request->getPost('published_at');
+
         $data = [
             'id'       => $id,
             'title'    => $title,
             'slug'     => $slug,
             'category' => $this->request->getPost('category'),
             'content'  => $this->request->getPost('content'),
+            'published_at' => $publishedAt,
         ];
 
         $file = $this->request->getFile('image');
