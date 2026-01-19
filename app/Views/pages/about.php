@@ -47,7 +47,7 @@
                 <div class="position-absolute" style="top: -30px; left: -30px; width: 150px; height: 150px; background-image: radial-gradient(var(--color-primary) 1.5px, transparent 1.5px); background-size: 20px 20px; opacity: 0.2; z-index: 0;"></div>
 
                 <div class="position-relative z-1">
-                    <img src="<?= $img ?>" alt="Tentang Pesona Transport" class="img-fluid rounded-4 shadow w-100" style="object-fit: cover; min-height: 450px;">
+                    <img src="<?= $img ?>" alt="Tentang Pesona Trans" class="img-fluid rounded-4 shadow w-100" style="object-fit: cover; min-height: 450px;">
                 </div>
 
                 <div class="position-absolute border border-primary border-2 rounded-4" style="bottom: -20px; right: -20px; width: 70%; height: 70%; z-index: 0; opacity: 0.3;"></div>
@@ -159,14 +159,86 @@
     </div>
 </section>
 
-<section class="py-5 bg-white text-center">
+<section class="py-5 bg-white text-center position-relative">
     <div class="container py-4">
-        <h2 class="fw-bold mb-3" data-aos="fade-up">Siap untuk Perjalanan Anda?</h2>
-        <p class="text-muted mb-4 lead" data-aos="fade-up" data-aos-delay="100">Konsultasikan kebutuhan transportasi Anda bersama tim ahli kami.</p>
-        <a href="<?= base_url('contact') ?>" class="btn btn-primary-custom rounded-pill px-5 btn-lg shadow" data-aos="fade-up" data-aos-delay="200">
-            Hubungi Kami Sekarang
-        </a>
+
+        <div id="blurContent" class="transition-blur">
+            <h2 class="fw-bold mb-3" data-aos="fade-up">Siap untuk Perjalanan Anda?</h2>
+            <p class="text-muted mb-4 lead" data-aos="fade-up" data-aos-delay="100">
+                Konsultasikan kebutuhan transportasi Anda bersama tim ahli kami.
+            </p>
+        </div>
+
+        <div class="position-relative d-inline-block w-100" data-aos="fade-up" data-aos-delay="200" id="interactionArea">
+
+            <button type="button" class="btn btn-search-glow btn-lg rounded-pill px-5 position-relative z-index-20">
+                <i class="fas fa-paper-plane me-2"></i> Hubungi Kami Sekarang
+            </button>
+
+            <div id="expandWrapper" class="popup-expand-wrapper">
+                <div class="popup-inner-content">
+
+                    <div class="contact-popup-bottom shadow-lg">
+                        <div class="popup-arrow-top"></div>
+
+                        <div class="d-flex gap-3 position-relative z-index-30">
+                            <?php
+                            // Ambil data dari CMS
+                            $waData = get_setting('social_whatsapp', 'https://wa.me/62812345678');
+
+                            // Logika Pintar: Cek apakah data dari CMS berupa Link atau hanya Nomor
+                            if (strpos($waData, 'http') !== false) {
+                                $waLink = $waData; // Jika sudah berupa link, pakai langsung
+                            } else {
+                                // Jika hanya nomor (misal: 0812...), kita format jadi link wa.me
+                                $waClean = preg_replace('/[^0-9]/', '', $waData);
+                                if (substr($waClean, 0, 1) == '0') $waClean = '62' . substr($waClean, 1);
+                                $waLink = 'https://wa.me/' . $waClean;
+                            }
+                            ?>
+                            
+                            <a href="<?= $waLink ?>" target="_blank" class="contact-icon-btn wa" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                                <span class="small-label">WhatsApp</span>
+                            </a>
+
+                            <?php $phone = get_setting('contact_phone', '+6221555555'); ?>
+                            <a href="tel:<?= $phone ?>" class="contact-icon-btn phone" title="Telepon">
+                                <i class="fas fa-phone-alt"></i>
+                                <span class="small-label">Telepon</span>
+                            </a>
+
+                            <?php $email = get_setting('contact_email', 'info@pesonatransport.com'); ?>
+                            <a href="mailto:<?= $email ?>" class="contact-icon-btn email" title="Email">
+                                <i class="fas fa-envelope"></i>
+                                <span class="small-label">Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </section>
+
+<script>
+    const blurTarget = document.getElementById('blurContent');
+    const expandWrapper = document.getElementById('expandWrapper');
+    const interactionArea = document.getElementById('interactionArea');
+
+    // Logic Mouse Masuk (Expand)
+    interactionArea.addEventListener('mouseenter', () => {
+        expandWrapper.classList.add('open'); // Buka wrapper (Section Melebar)
+        blurTarget.classList.add('blur-active'); // Blur teks atas
+    });
+
+    // Logic Mouse Keluar (Shrink)
+    interactionArea.addEventListener('mouseleave', () => {
+        expandWrapper.classList.remove('open'); // Tutup wrapper (Section Mengecil)
+        blurTarget.classList.remove('blur-active'); // Hapus blur
+    });
+</script>
 
 <?= $this->endSection() ?>

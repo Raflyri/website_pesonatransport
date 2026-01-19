@@ -23,7 +23,7 @@ class Home extends BaseController
         $newsModel = new NewsModel();
 
         $data = [
-            'title' => 'Home | Pesona Transport',
+            'title' => 'Home | Pesona Trans',
             'banners' => $bannersModel->where('is_active', 1)
                 ->orderBy('display_order', 'ASC')
                 ->findAll(),
@@ -41,7 +41,7 @@ class Home extends BaseController
         $profileModel = new ProfileModel();
 
         $data = [
-            'title'   => 'Tentang Kami - Pesona Transport',
+            'title'   => 'Tentang Kami - Pesona Trans',
             'profile' => $profileModel->first(),
         ];
 
@@ -60,7 +60,7 @@ class Home extends BaseController
         //dd($fleetsData);
 
         $data = [
-            'title'      => 'Armada Kami | Pesona Transport',
+            'title'      => 'Armada Kami | Pesona Trans',
             // Mengambil semua kategori untuk dijadikan Tab/Filter
             'categories' => $categoryModel->findAll(),
             // Mengambil semua armada yang available (is_available = 1)
@@ -107,7 +107,7 @@ class Home extends BaseController
         $profileModel = new ProfileModel(); // Supaya header/footer tetap aman datanya
 
         $data = [
-            'title'   => 'Segera Hadir - Pesona Transport',
+            'title'   => 'Segera Hadir - Pesona Trans',
             'profile' => $profileModel->first(),
         ];
 

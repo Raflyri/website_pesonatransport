@@ -43,7 +43,7 @@
         <!--small class="text-white-50">Scroll ke bawah untuk melihat efeknya &darr;</small-->
     </div>
     <div class="container text-center mt-5 pt-5 pb-5 auto-invert" style="max-width: 800px;">
-        <h3 class="fw-bold mb-4" data-aos="fade-up">Kenapa Harus Pesona Transport?</h3>
+        <h3 class="fw-bold mb-4" data-aos="fade-up">Kenapa Harus Pesona Trans?</h3>
 
         <div class="row g-4">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
@@ -68,7 +68,7 @@
             </div>
         </div>
 
-        <!--p class="mt-5 opacity-75">&copy; <?= date('Y') ?> Pesona Transport Indonesia</p-->
+        <!--p class="mt-5 opacity-75">&copy; <?= date('Y') ?> Pesona Trans Indonesia</p-->
     </div>
 
 </div>

@@ -41,6 +41,22 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="site_icon" class="form-label">Favicon / Site Icon</label>
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <img src="<?= base_url(get_setting('site_icon', 'favicon.ico')) ?>"
+                                    alt="Current Favicon"
+                                    class="img-thumbnail"
+                                    style="width: 50px; height: 50px; object-fit: contain;">
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="file" id="site_icon" name="site_icon" accept="image/*,.ico">
+                                <div class="form-text">Format: .ico, .png, .jpg. Ukuran max 1MB. Disarankan rasio 1:1 (persegi).</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-6">

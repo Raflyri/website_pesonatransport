@@ -39,7 +39,7 @@ class CreateSettingsTable extends Migration
         // Insert default data
         $data = [
             ['key' => 'site_icon', 'value' => 'favicon.ico', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['key' => 'site_name', 'value' => 'Pesona Transport', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['key' => 'site_name', 'value' => 'Pesona Trans', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
         ];
         $this->db->table('settings')->insertBatch($data);
     }

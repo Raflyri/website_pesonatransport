@@ -2,8 +2,12 @@
 <html lang="id">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Admin Panel | Pesona Transport</title>
+
+    <title>Admin Panel | Pesona Trans</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="<?= base_url(get_setting('site_icon', 'favicon.ico')) ?>?v=<?= time() ?>">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" crossorigin="anonymous" />
@@ -39,7 +43,7 @@
         </main>
 
         <footer class="app-footer">
-            <strong>Copyright &copy; 2025 <a href="#">Pesona Transport</a>.</strong>
+            <strong>Copyright &copy; 2025 <a href="#">Pesona Trans</a>.</strong>
             All rights reserved.
         </footer>
     </div>
