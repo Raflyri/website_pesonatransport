@@ -153,9 +153,9 @@
                 <i class="fas fa-question-circle sub-icon"></i>
             </div>
 
-            <h1>Wah, Nyasar Kak?</h1>
+            <h1>Wah, Nyasar?</h1>
             <p>
-                Halaman yang Kakak cari sepertinya sudah pindah alamat atau memang tidak ada. 
+                Halaman yang dicari sepertinya sudah pindah alamat atau memang tidak ada. 
                 Mari kita kembali ke jalan yang benar.
             </p>
 
