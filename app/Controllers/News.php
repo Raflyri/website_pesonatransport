@@ -44,8 +44,11 @@ class News extends BaseController
             ->orderBy('published_at', 'DESC')
             ->findAll(3);
 
+        $metaDesc = substr(strip_tags($newsItem['content']), 0, 160);
+
         $data = [
             'title'        => $newsItem['title'],
+            'meta_desc'    => $metaDesc,
             'news_item'    => $newsItem,
             'sidebar_news' => $sidebarNews
         ];

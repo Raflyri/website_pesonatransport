@@ -1,2 +1,7 @@
 User-agent: *
-Disallow: 
+Disallow: /admin/
+Disallow: /system/
+Disallow: /app/
+Disallow: /writable/
+
+Sitemap: https://pesonatransport.com/sitemap.xml

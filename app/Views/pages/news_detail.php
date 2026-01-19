@@ -8,14 +8,14 @@
         <span class="badge bg-primary px-3 py-2 mb-3 rounded-pill" data-aos="fade-down">
             <?= esc($news_item['category']); ?>
         </span>
-        
+
         <h1 class="display-5 fw-bold text-white mb-3" data-aos="fade-up">
             <?= esc($news_item['title']); ?>
         </h1>
-        
+
         <div class="text-white-50" data-aos="fade-up" data-aos-delay="100">
             <small>
-                <i class="far fa-user me-2"></i> Admin &nbsp;|&nbsp; 
+                <i class="far fa-user me-2"></i> Admin &nbsp;|&nbsp;
                 <i class="far fa-calendar-alt me-2 ms-3"></i> <?= date('d F Y', strtotime($news_item['created_at'])); ?>
             </small>
         </div>
@@ -25,17 +25,18 @@
 <section class="py-5 bg-white">
     <div class="container">
         <div class="row g-5">
-            
+
             <div class="col-lg-8">
                 <div class="mb-4 rounded-4 overflow-hidden shadow-sm" data-aos="fade-up">
-                    <img src="<?= base_url($news_item['image_path'] ? $news_item['image_path'] : 'images/default-news.jpg'); ?>" 
-                         alt="<?= esc($news_item['title']); ?>" 
-                         class="img-fluid w-100"
-                         style="object-fit: cover; max-height: 500px;">
+                    <img src="<?= base_url($news_item['image_path'] ? $news_item['image_path'] : 'images/default-news.jpg'); ?>"
+                        alt="<?= esc($news_item['title']); ?>"
+                        class="img-fluid w-100"
+                        style="object-fit: cover; max-height: 500px;">
                 </div>
 
                 <article class="blog-content text-muted lh-lg mb-5" data-aos="fade-up">
-                    <?= $news_item['content']; // PENTING: Jangan di-esc() jika content dari text editor (HTML) ?>
+                    <?= $news_item['content']; // PENTING: Jangan di-esc() jika content dari text editor (HTML) 
+                    ?>
                 </article>
 
                 <hr>
@@ -55,7 +56,7 @@
 
             <div class="col-lg-4">
                 <div class="position-sticky" style="top: 100px;">
-                    
+
                     <div class="card border-0 shadow-sm mb-4">
                         <div class="card-body p-4">
                             <h5 class="fw-bold mb-3">Cari Berita</h5>
@@ -71,17 +72,17 @@
                     <div class="card border-0 shadow-sm">
                         <div class="card-body p-4">
                             <h5 class="fw-bold mb-3">Berita Lainnya</h5>
-                            
+
                             <?php if (!empty($sidebar_news)) : ?>
                                 <ul class="list-unstyled mb-0">
                                     <?php foreach ($sidebar_news as $side_item) : ?>
                                         <li class="mb-3">
                                             <a href="/news/<?= esc($side_item['slug']); ?>" class="d-flex text-decoration-none text-dark group-hover">
                                                 <div class="flex-shrink-0">
-                                                    <img src="<?= base_url($side_item['image_path'] ? $side_item['image_path'] : 'images/default-news.jpg'); ?>" 
-                                                         class="rounded-3" 
-                                                         style="width: 70px; height: 70px; object-fit: cover;" 
-                                                         alt="Thumb">
+                                                    <img src="<?= base_url($side_item['image_path'] ? $side_item['image_path'] : 'images/default-news.jpg'); ?>"
+                                                        class="rounded-3"
+                                                        style="width: 70px; height: 70px; object-fit: cover;"
+                                                        alt="Thumb">
                                                 </div>
                                                 <div class="flex-grow-1 ms-3">
                                                     <h6 class="mb-1 small fw-bold text-truncate-2"><?= esc($side_item['title']); ?></h6>
@@ -105,5 +106,21 @@
         </div>
     </div>
 </section>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": "<?= esc($news_item['title']) ?>",
+        "image": [
+            "<?= base_url($news_item['image_path']) ?>"
+        ],
+        "datePublished": "<?= date('c', strtotime($news_item['created_at'])) ?>",
+        "author": [{
+            "@type": "Organization",
+            "name": "Pesona Transport"
+        }]
+    }
+</script>
 
 <?= $this->endSection() ?>
