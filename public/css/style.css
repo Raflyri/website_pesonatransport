@@ -306,3 +306,129 @@ footer.footer-custom a {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
 }
+
+/* =========================================
+   INTERACTION & POPUP STYLES (FINAL)
+   ========================================= */
+
+/* --- 1. EFEK BLUR TRANSITION --- */
+.transition-blur {
+    transition: filter 0.4s ease-in-out, opacity 0.4s ease;
+    filter: blur(0); /* Default tajam */
+    opacity: 1;
+}
+
+.transition-blur.blur-active {
+    filter: blur(5px); /* Efek Blur */
+    opacity: 0.6; /* Sedikit diredupkan biar fokus ke popup */
+    pointer-events: none; /* Mencegah teks di-klik saat blur */
+}
+
+/* --- 2. WRAPPER ANIMASI (EXPAND/MELEBAR) --- */
+.popup-expand-wrapper {
+    display: grid;
+    grid-template-rows: 0fr; /* Default tertutup */
+    transition: grid-template-rows 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek Membal */
+}
+
+.popup-expand-wrapper.open {
+    grid-template-rows: 1fr; /* Terbuka */
+}
+
+.popup-inner-content {
+    overflow: hidden;
+    min-height: 0; /* Wajib ada untuk animasi grid */
+    padding-bottom: 20px; /* Ruang untuk shadow */
+    padding-top: 5px;
+}
+
+/* --- 3. KOTAK POPUP UTAMA --- */
+.contact-popup-bottom {
+    position: relative; /* Relative agar mendorong elemen di bawahnya (footer) */
+    margin: 15px auto 0; /* Jarak 15px dari tombol, auto kiri-kanan */
+    
+    background: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    width: max-content;
+    
+    /* State Awal: Tersembunyi */
+    opacity: 0;
+    transform: translateY(-20px);
+    visibility: hidden;
+    
+    transition: all 0.4s ease;
+    z-index: 999;
+}
+
+/* State Muncul (Dipicu oleh Wrapper .open) */
+.popup-expand-wrapper.open .contact-popup-bottom {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible !important;
+}
+
+/* --- 4. PANAH POPUP (Arah Ke Atas) --- */
+.popup-arrow-top {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+}
+
+/* --- 5. STYLING ICON SOSMED --- */
+.contact-icon-btn {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%;
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    color: white; 
+    font-size: 1.2rem; 
+    text-decoration: none; 
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.contact-icon-btn:hover { 
+    transform: scale(1.15); 
+    color: white; 
+}
+
+/* Warna Gradient Icon */
+.contact-icon-btn.wa { 
+    background: linear-gradient(135deg, #25d366, #128c7e); 
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+}
+.contact-icon-btn.phone { 
+    background: linear-gradient(135deg, #3498db, #2980b9); 
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+.contact-icon-btn.email { 
+    background: linear-gradient(135deg, #e74c3c, #c0392b); 
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+}
+
+/* Label Kecil (Tooltip) */
+.small-label {
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    background: #333;
+    color: white;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.contact-icon-btn:hover .small-label {
+    display: block;
+}

@@ -54,9 +54,8 @@
                     </div>
                 </div>
 
-                <div class="col-12 mt-2">
-                    <button type="submit" class="btn btn-primary-custom w-100 py-3 fw-bold rounded shadow-sm">
-                        <i class="fas fa-search me-1"></i> Cek Ketersediaan
+                <div class="col-12 mt-3"> <button type="submit" class="btn btn-search-glow w-100 py-3 fw-bold rounded-pill">
+                        <i class="fas fa-search me-2"></i> CEK KETERSEDIAAN
                     </button>
                 </div>
             </div>

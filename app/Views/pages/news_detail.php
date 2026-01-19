@@ -16,7 +16,7 @@
         <div class="text-white-50" data-aos="fade-up" data-aos-delay="100">
             <small>
                 <i class="far fa-user me-2"></i> Admin &nbsp;|&nbsp;
-                <i class="far fa-calendar-alt me-2 ms-3"></i> <?= date('d F Y', strtotime($news_item['created_at'])); ?>
+                <i class="far fa-calendar-alt me-2 ms-3"></i> <?= date('d F Y', strtotime($news_item['published_at'])); ?>
             </small>
         </div>
     </div>
@@ -118,7 +118,7 @@
         "datePublished": "<?= date('c', strtotime($news_item['created_at'])) ?>",
         "author": [{
             "@type": "Organization",
-            "name": "Pesona Transport"
+            "name": "Pesona Trans"
         }]
     }
 </script>

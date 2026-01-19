@@ -2,10 +2,10 @@
   <div class="sidebar-brand">
     <a href="<?= base_url('admin/dashboard') ?>" class="brand-link">
       <img src="<?= base_url(get_setting('site_icon', 'admin_assets/img/AdminLTELogo.png')) ?>"
-        alt="<?= get_setting('site_name', 'Pesona Transport') ?>"
+        alt="<?= get_setting('site_name', 'Pesona Trans') ?>"
         class="brand-image opacity-75 shadow"
         style="max-height: 33px;"> 
-        <span class="brand-text fw-light"><?= get_setting('site_name', 'Pesona Transport') ?></span>
+        <span class="brand-text fw-light"><?= get_setting('site_name', 'Pesona Trans') ?></span>
     </a>
   </div>
   <div class="sidebar-wrapper">

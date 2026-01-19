@@ -7,7 +7,7 @@
                 class="d-inline-block align-text-top brand-logo-responsive">
 
             <!--span class="fw-bold fs-5 ms-2 d-none d-md-block">
-                <?= get_setting('site_name', 'Pesona Transport') ?>
+                <?= get_setting('site_name', 'Pesona Trans') ?>
             </span-->
 
         </a>

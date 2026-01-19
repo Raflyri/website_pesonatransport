@@ -3,8 +3,12 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Pesona Transport | Login</title>
+
+  <title>Pesona Trans | Login</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" href="<?= base_url(get_setting('site_icon', 'favicon.ico')) ?>?v=<?= time() ?>">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" crossorigin="anonymous" />
 
@@ -21,11 +25,11 @@
       <div class="login-logo">
         <a href="<?= base_url() ?>">
           <img src="<?= base_url(get_setting('site_logo_login', 'admin_assets/img/AdminLTELogo.png')) ?>"
-            alt="<?= get_setting('site_name', 'Pesona Transport') ?>"
+            alt="<?= get_setting('site_name', 'Pesona Trans') ?>"
             class="img-fluid mb-3"
             style="max-height: 100px; max-width: 80%;">
 
-          <!--div class="font-weight-bold"><?= get_setting('site_name', 'Pesona Transport') ?></div-->
+          <!--div class="font-weight-bold"><?= get_setting('site_name', 'Pesona Trans') ?></div-->
         </a>
       </div>
       <div class="card-body login-card-body">
