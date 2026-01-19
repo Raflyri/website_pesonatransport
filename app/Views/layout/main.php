@@ -2,9 +2,13 @@
 <html lang="id">
 
 <head>
-  <meta charset="utf-8">
+  meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= get_setting('site_name', 'Pesona Transport') ?></title>
+
+  <title><?= isset($title) ? esc($title) . ' - ' : '' ?><?= get_setting('site_name', 'Pesona Transport') ?></title>
+
+  <meta name="description" content="<?= isset($meta_desc) ? esc($meta_desc) : 'Layanan sewa bus dan transportasi terbaik di Jakarta...' ?>">
+  
   <link rel="icon" href="<?= base_url(get_setting('site_icon', 'favicon.ico')) ?>">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">

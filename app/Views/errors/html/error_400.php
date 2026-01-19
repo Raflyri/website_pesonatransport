@@ -108,7 +108,7 @@
 
             <h1>Permintaan Tidak Valid</h1>
             <p>
-                Link yang Kakak akses sepertinya rusak atau permintaan datanya tidak lengkap. 
+                Link yang diakses sepertinya rusak atau permintaan datanya tidak lengkap. 
                 Silakan kembali ke halaman utama.
             </p>
 

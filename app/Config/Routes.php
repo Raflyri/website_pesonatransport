@@ -5,6 +5,10 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
+// Route untuk Sitemap SEO
+$routes->get('sitemap.xml', 'Sitemap::index');
+
 $routes->get('/', 'Home::index');
 
 // Halaman Utama
