@@ -432,3 +432,74 @@ footer.footer-custom a {
 .contact-icon-btn:hover .small-label {
     display: block;
 }
+
+/* =========================================
+   CUSTOM PAGINATION STYLES (Floating Bubbles)
+   ========================================= */
+
+/* Hapus styling bawaan Bootstrap */
+.pagination {
+    gap: 8px; /* Jarak antar bulatan */
+    align-items: center;
+    border: none;
+}
+
+.page-item {
+    background: transparent;
+}
+
+/* Styling Dasar Link (Bulatan) */
+.page-link {
+    border: none;
+    border-radius: 50% !important; /* Wajib bulat sempurna */
+    width: 45px;   /* Ukuran lebar */
+    height: 45px;  /* Ukuran tinggi */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-weight: 700;
+    font-family: var(--font-heading, sans-serif);
+    color: var(--color-dark);
+    background-color: white;
+    
+    /* Shadow halus agar terlihat melayang */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek membal saat hover */
+    margin: 0; /* Reset margin bawaan */
+}
+
+/* Efek Hover (Melayang Naik) */
+.page-link:hover {
+    background-color: var(--color-light);
+    color: var(--color-primary);
+    transform: translateY(-5px); /* Naik ke atas sedikit */
+    box-shadow: 0 8px 15px rgba(19, 94, 249, 0.15); /* Shadow makin besar */
+    z-index: 2;
+}
+
+/* State ACTIVE (Halaman yang sedang dibuka) */
+.page-item.active .page-link {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    transform: scale(1.15); /* Sedikit lebih besar dari yang lain */
+    box-shadow: 0 8px 20px rgba(19, 94, 249, 0.4); /* Glow effect warna biru */
+    z-index: 1;
+}
+
+/* State DISABLED (Tombol prev/next mati) */
+.page-item.disabled .page-link {
+    background-color: #f1f3f5;
+    color: #adb5bd;
+    box-shadow: none;
+    transform: none;
+    cursor: not-allowed;
+}
+
+/* Panah Navigasi (Prev/Next) */
+.page-link span[aria-hidden="true"] {
+    font-size: 1.2rem;
+    line-height: 1;
+    margin-top: -2px; /* Sedikit koreksi posisi vertikal icon panah */
+}

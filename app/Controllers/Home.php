@@ -30,7 +30,7 @@ class Home extends BaseController
             'fleets'  => $fleetModel->getFleetsWithCategory(),
             'categories' => $categoryModel->findAll(),
             'profile'    => $profileModel->first(),
-            'latest_news' => $newsModel->getLatestNews(3)
+            'latest_news' => $newsModel->getLatestNews(6)
         ];
 
         return view('pages/home', $data);
