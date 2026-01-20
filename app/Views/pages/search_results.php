@@ -43,6 +43,25 @@
                 </div>
             <?php else: ?>
 
+                <div class="alert alert-warning border-0 shadow-sm rounded-3 mb-4" role="alert" data-aos="fade-up">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-info-circle fa-lg text-warning mt-1"></i>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="alert-heading fw-bold mb-1"><i class="fas fa-calculator me-1"></i> Informasi Harga</h6>
+                            <p class="mb-0 small text-muted">
+                                Harga yang tertera di bawah ini adalah <strong>estimasi perhitungan sementara</strong> berdasarkan durasi/jarak.
+                                Biaya final dapat menyesuaikan dengan rute spesifik, biaya tol, parkir, & kebijakan operasional.
+                                <br>
+                                <a href="https://wa.me/<?= get_setting('social_whatsapp', '628xxx') ?>?text=Halo%20Admin,%20saya%20mau%20tanya%20fix%20price%20untuk..." target="_blank" class="text-decoration-none fw-bold text-warning">
+                                    Hubungi Admin untuk Penawaran Pasti <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <?php foreach ($fleets as $item): ?>
 
                     <?php $isAvailable = ($item['is_available'] == 1); ?>
@@ -104,7 +123,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between">
-                                    <a href="#" class="btn btn-sm btn-dark rounded py-2 px-4 <?= !$isAvailable ? 'disabled' : '' ?>">Detail</a>
+                                    <!--a href="#" class="btn btn-sm btn-dark rounded py-2 px-4 <?= !$isAvailable ? 'disabled' : '' ?>">Detail</a-->
 
                                     <?php if ($isAvailable): ?>
 
