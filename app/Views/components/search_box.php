@@ -54,82 +54,65 @@
                     </div>
                 </div>
 
-                <div class="col-12 mt-3"> <button type="submit" class="btn btn-search-glow w-100 py-3 fw-bold rounded-pill">
-                        <i class="fas fa-search me-2"></i> CEK KETERSEDIAAN
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm transition-btn">
+                        <i class="fas fa-search me-2"></i> Cari Ketersediaan Unit
                     </button>
+                </div>
+
+                <div class="text-center mt-3">
+                    <small class="text-muted fst-italic">
+                        <i class="fas fa-exclamation-circle text-warning me-1"></i>
+                        *Harga yang muncul hanya bersifat <b>estimasi</b>. Hubungi kami untuk detail harga final.
+                    </small>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+<?php
+// Ambil API Key dari Database
+$googleMapsKey = get_setting('google_maps_api_key');
+?>
+
+<?php if (!empty($googleMapsKey)) : ?>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<?= $googleMapsKey ?>&libraries=places"></script>
+
+    <script>
+        function initAutocomplete() {
+            // Daftar ID input yang akan diberi fitur Autocomplete
+            const inputs = [
+                'lokasi_jemput',
+                'lokasi_tujuan'
+            ];
+
+            inputs.forEach(id => {
+                const inputElement = document.getElementById(id);
+                if (inputElement) {
+                    const autocomplete = new google.maps.places.Autocomplete(inputElement, {
+                        types: ['geocode'], // Fokus ke alamat/lokasi
+                        componentRestrictions: {
+                            country: 'id'
+                        } // Opsional: Batasi pencarian di Indonesia
+                    });
+
+                    // Mencegah form tersubmit saat user menekan Enter di pilihan lokasi
+                    inputElement.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                        }
+                    });
+                }
+            });
+        }
+
+        // Jalankan initAutocomplete hanya jika script Google berhasil dimuat
+        google.maps.event.addDomListener(window, 'load', initAutocomplete);
+    </script>
+<?php endif; ?>
 
 <script>
-    function initAutocomplete() {
-        // 1. Opsi Restriksi (Hanya Indonesia)
-        const options = {
-            componentRestrictions: {
-                country: "id"
-            },
-            fields: ["formatted_address", "geometry", "name"],
-        };
-
-        // 2. Pasang Autocomplete ke Input
-        const pickupInput = document.getElementById("pickup_input");
-        const dropoffInput = document.getElementById("dropoff_input");
-
-        const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput, options);
-        const dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffInput, options);
-
-        // 3. Listener saat lokasi dipilih
-        pickupAutocomplete.addListener("place_changed", calcRoute);
-        dropoffAutocomplete.addListener("place_changed", calcRoute);
-    }
-
-    function calcRoute() {
-        const origin = document.getElementById("pickup_input").value;
-        const destination = document.getElementById("dropoff_input").value;
-
-        if (origin && destination) {
-            const service = new google.maps.DistanceMatrixService();
-
-            service.getDistanceMatrix({
-                    origins: [origin],
-                    destinations: [destination],
-                    travelMode: google.maps.TravelMode.DRIVING,
-                    unitSystem: google.maps.UnitSystem.METRIC,
-                },
-                (response, status) => {
-                    if (status !== "OK") {
-                        alert("Error was: " + status);
-                    } else {
-                        const results = response.rows[0].elements[0];
-                        if (results.status === "OK") {
-                            // Ambil data jarak
-                            const distanceText = results.distance.text; // "150 km"
-                            const distanceVal = results.distance.value / 1000; // 150000 meter -> 150 km
-                            const durationText = results.duration.text;
-
-                            // Update UI
-                            document.getElementById("distance-info").style.display = 'block';
-                            document.getElementById("show_distance").innerText = distanceText;
-                            document.getElementById("show_duration").innerText = durationText;
-
-                            // Isi Input Hidden (untuk dikirim ke Backend)
-                            document.getElementById("distance_km").value = distanceVal.toFixed(1);
-                            document.getElementById("distance_text").value = distanceText;
-                            document.getElementById("duration_text").value = durationText;
-                        }
-                    }
-                }
-            );
-        }
-    }
-
-    // Jalankan script
-    google.maps.event.addDomListener(window, 'load', initAutocomplete);
-
     document.addEventListener("DOMContentLoaded", function() {
         const radioSopir = document.getElementById('layanan_sopir');
         const radioLepasKunci = document.getElementById('layanan_lepaskunci');
@@ -137,6 +120,9 @@
         const inputLokasi = document.querySelectorAll('.group-lokasi input');
 
         function toggleLayanan() {
+            // Pastikan elemen ada sebelum dimanipulasi untuk menghindari error console
+            if (!radioLepasKunci) return;
+
             if (radioLepasKunci.checked) {
                 // Sembunyikan Input Lokasi
                 groupLokasi.forEach(el => el.style.display = 'none');
@@ -154,7 +140,9 @@
         if (radioSopir && radioLepasKunci) {
             radioSopir.addEventListener('change', toggleLayanan);
             radioLepasKunci.addEventListener('change', toggleLayanan);
-            toggleLayanan(); // Jalankan sekali saat load
+
+            // Jalankan sekali saat load agar tampilan sesuai state awal
+            toggleLayanan();
         }
     });
 </script>

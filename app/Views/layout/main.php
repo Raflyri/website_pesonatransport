@@ -16,7 +16,7 @@
   <link rel="icon" href="https://pesonatransport.com/uploads/settings/1768149098_64543f2f145b1cf64698.png" type="image/png">
 
   <link rel="apple-touch-icon" href="https://pesonatransport.com/uploads/settings/1768149098_64543f2f145b1cf64698.png">
-  
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -29,20 +29,20 @@
 
   <link href="<?= base_url('css/search-custom.css?v=' . time()) ?>" rel="stylesheet">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-86RXPRDJSR">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+  <?= $this->renderSection('styles') ?>
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+  <?php if ($tag_id = get_setting('google_tag_id')) : ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= $tag_id ?>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'G-86RXPRDJSR');
-  </script>
-
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', '<?= $tag_id ?>');
+    </script>
+  <?php endif; ?>
   <?= $this->renderSection('styles') ?>
 
 </head>

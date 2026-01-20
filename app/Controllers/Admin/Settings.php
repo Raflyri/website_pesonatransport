@@ -18,17 +18,12 @@ class Settings extends BaseController
     {
         $data = [
             'title' => 'Pengaturan Website',
-            // Data Image
             'site_name'        => get_setting('site_name'),
             'site_icon'        => get_setting('site_icon'),
             'site_logo_header' => get_setting('site_logo_header'),
             'site_logo_footer' => get_setting('site_logo_footer'),
             'site_logo_login'  => get_setting('site_logo_login'),
-
-            // Data Video (BARU)
             'coming_soon_video' => get_setting('coming_soon_video'),
-
-            // Data Text (Footer & Kontak)
             'site_desc_footer' => get_setting('site_desc_footer'),
             'company_address'  => get_setting('company_address'),
             'company_phone'    => get_setting('company_phone'),
@@ -36,6 +31,8 @@ class Settings extends BaseController
             'social_facebook'  => get_setting('social_facebook'),
             'social_instagram' => get_setting('social_instagram'),
             'social_whatsapp'  => get_setting('social_whatsapp'),
+            'google_tag_id'    => get_setting('google_tag_id'),
+            'google_maps_api_key' => get_setting('google_maps_api_key'),
         ];
         return view('admin/settings/index', $data);
     }
@@ -46,7 +43,6 @@ class Settings extends BaseController
         $model = new SettingModel();
         $fileIcon = $this->request->getFile('site_icon');
 
-        // 1. Update Data Text (Nama, Desc, Kontak, Sosmed)
         $textFields = [
             'site_name',
             'site_desc_footer',
@@ -55,28 +51,24 @@ class Settings extends BaseController
             'company_email',
             'social_facebook',
             'social_instagram',
-            'social_whatsapp'
+            'social_whatsapp',
+            'google_tag_id',
+            'google_maps_api_key'
         ];
 
         foreach ($textFields as $key) {
             $val = $this->request->getPost($key);
-            // Cek jika key ada di db, update. Jika tidak, insert (opsional, tergantung model)
-            // Di sini kita asumsikan update
             $this->settingModel->where('key', $key)->set(['value' => $val])->update();
         }
 
-        // 2. Update File Images
         $this->handleUpload('site_icon');
         $this->handleUpload('site_logo_header');
         $this->handleUpload('site_logo_footer');
         $this->handleUpload('site_logo_login');
-
-        // 3. Update File Video (BARU)
         $this->handleVideoUpload('coming_soon_video');
         $this->handleVideoUpload('search_header_video');
 
         if ($fileIcon && $fileIcon->isValid() && !$fileIcon->hasMoved()) {
-            // Validasi tipe file (hanya gambar/ico)
             $validationRule = [
                 'site_icon' => [
                     'label' => 'Favicon',
@@ -88,31 +80,22 @@ class Settings extends BaseController
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
 
-            // Pindahkan file ke folder public/images (atau root public jika mau jadi favicon.ico standar)
-            // Di sini kita simpan dengan nama unik agar tidak bentrok cache
             $newName = 'favicon_' . time() . '.' . $fileIcon->getExtension();
-            $fileIcon->move('images', $newName); // Simpan di public/images/
+            $fileIcon->move('images', $newName);
 
-            // Update ke database
-            // Pastikan Kakak punya method updateSetting di model atau cara save manual
             $this->settingModel->save(['key' => 'site_icon', 'value' => 'images/' . $newName]);
-
-            // Opsi alternatif: jika ingin menimpa favicon.ico utama (agar terdeteksi otomatis oleh browser)
-            // copy(FCPATH . 'images/' . $newName, FCPATH . 'favicon.ico');
         }
 
         return redirect()->to('/admin/settings')->with('message', 'Pengaturan berhasil diperbarui');
     }
 
-    // Fungsi Upload Gambar (Yang lama)
     private function handleUpload($fieldKey)
     {
         $file = $this->request->getFile($fieldKey);
 
         if ($file && $file->isValid() && !$file->hasMoved()) {
-            // Validasi sederhana: Pastikan ini gambar
             if (strpos($file->getMimeType(), 'image') === false) {
-                return; // Skip jika bukan gambar
+                return;
             }
 
             $oldFile = $this->settingModel->getValue($fieldKey);

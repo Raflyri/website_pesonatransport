@@ -212,6 +212,37 @@
                 </div>
             </div>
 
+            <div class="card card-danger card-outline mt-4">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-chart-line mr-2"></i> Integrasi Google & API</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Google Tag ID (Tracking ID)</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fab fa-google"></i></span>
+                            </div>
+                            <input type="text" name="google_tag_id" class="form-control" value="<?= $google_tag_id ?>" placeholder="Contoh: AW-123456">
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label>Google Maps API Key</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                            </div>
+                            <input type="text" name="google_maps_api_key" class="form-control" value="<?= $google_maps_api_key ?>" placeholder="Paste API Key di sini...">
+                        </div>
+                        <small class="text-muted">
+                            Wajib diisi agar fitur <b>Pencarian Lokasi (Autocomplete)</b> berfungsi.
+                        </small>
+                    </div>
+
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary btn-lg btn-block mt-4 mb-5"><i class="fas fa-save"></i> Simpan Semua Perubahan</button>
         </form>
         <br><br>
