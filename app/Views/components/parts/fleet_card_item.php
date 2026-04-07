@@ -34,7 +34,7 @@
                         <span class="text-primary fw-bold fs-5">Rp <?= number_format($fleet['price_per_day'] ?? 0, 0, ',', '.') ?></span>
                         <small class="text-muted">/hari</small>
                     </div>
-                    <a href="https://wa.me/628123456789?text=Halo, saya tertarik menyewa <?= esc($fleet['brand'] ?? '-') ?><?= esc($fleet['name'] ?? 'mobil ini') ?>" class="btn btn-outline-primary rounded-pill btn-sm px-3">
+                    <a href="<?= get_whatsapp_url('Halo Admin Pesona Trans, saya tertarik menyewa unit ' . ($fleet['brand'] ?? '-') . ' ' . ($fleet['name'] ?? 'mobil ini') . '.') ?>" class="btn btn-outline-primary rounded-pill btn-sm px-3" target="_blank">
                         Pesan <i class="fas fa-arrow-right ms-1"></i>
                     </a>
                 </div>

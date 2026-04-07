@@ -103,7 +103,7 @@
     <div class="container">
         <h2 class="mb-3">Butuh Kendaraan Khusus?</h2>
         <p class="mb-4">Hubungi tim kami untuk permintaan kustomisasi atau sewa jangka panjang.</p>
-        <a href="https://wa.me/628123456789" class="btn btn-success btn-lg rounded-pill px-5">
+        <a href="<?= get_whatsapp_url('Halo Admin Pesona Trans, saya ingin bertanya lebih lanjut mengenai pilihan armada yang tersedia.') ?>" class="btn btn-success btn-lg rounded-pill px-5" target="_blank">
             <i class="fab fa-whatsapp me-2"></i> Konsultasi Sekarang
         </a>
     </div>
