@@ -26,7 +26,7 @@ abstract class BaseController extends Controller
      */
 
     // protected $session;
-    protected $helpers = ['settings']; // Tambahkan 'settings' di sini
+    protected $helpers = []; // Settings helper dipindah ke app/Config/Autoload.php untuk kemudahan IDE
 
     /**
      * @return void
