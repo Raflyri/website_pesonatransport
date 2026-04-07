@@ -35,8 +35,8 @@
                 <li class="mb-2"><i class="fas fa-users me-2"></i> Kursi: <?= esc($fleet['seat_capacity'] ?? '-') ?> Orang</li>
             </ul>
 
-            <a href="https://wa.me/628123456789?text=Halo admin, saya mau sewa <?= esc($fleet['name'] ?? 'mobil ini') ?>" 
-               class="btn btn-light text-primary rounded-pill px-4 fw-bold shadow-sm mb-3">
+            <a href="<?= get_whatsapp_url('Halo Admin Pesona Trans, saya tertarik menyewa unit ' . ($fleet['brand'] ?? '-') . ' ' . ($fleet['name'] ?? 'mobil ini') . '.') ?>" 
+               class="btn btn-light text-primary rounded-pill px-4 fw-bold shadow-sm mb-3" target="_blank">
                <i class="fab fa-whatsapp me-1"></i> Pesan Sekarang
             </a>
             
