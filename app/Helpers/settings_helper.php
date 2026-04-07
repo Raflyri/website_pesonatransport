@@ -21,7 +21,7 @@ if (!function_exists('get_whatsapp_url')) {
     {
         // 1. Ambil nomor dari database (Ganti 'contact_wa' sesuai key di tabel settings kamu)
         // Jika tidak ada di DB, gunakan default nomor dummy
-        $phone = get_setting('contact_wa', '08123456789'); 
+        $phone = get_setting('social_whatsapp', '08123456789'); 
 
         // 2. Bersihkan karakter aneh (spasi, strip, plus)
         $phone = preg_replace('/[^0-9]/', '', $phone);

@@ -26,7 +26,7 @@
                     <?php endif; ?>
 
                     <?php if (get_setting('social_whatsapp')): ?>
-                        <a href="<?= get_setting('social_whatsapp') ?>" target="_blank" class="text-white social-icon bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; text-decoration: none;"><i class="fab fa-whatsapp"></i></a>
+                        <a href="<?= get_whatsapp_url() ?>" target="_blank" class="text-white social-icon bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; text-decoration: none;"><i class="fab fa-whatsapp"></i></a>
                     <?php endif; ?>
                 </div>
             </div>

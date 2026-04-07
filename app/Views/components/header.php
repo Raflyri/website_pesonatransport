@@ -39,7 +39,7 @@
                 </li>
 
                 <li class="nav-item ms-3">
-                    <a class="btn btn-accent-custom px-4 rounded-pill" href="#">
+                    <a class="btn btn-accent-custom px-4 rounded-pill" href="<?= get_whatsapp_url('Halo Admin Pesona Trans, saya ingin bertanya mengenai layanan armada Anda.') ?>" target="_blank">
                         <i class="fab fa-whatsapp"></i> Hubungi Kami
                     </a>
                 </li>

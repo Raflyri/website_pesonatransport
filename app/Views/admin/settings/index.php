@@ -155,8 +155,9 @@
                         <input type="text" name="social_instagram" class="form-control" value="<?= $social_instagram ?>" placeholder="https://instagram.com/...">
                     </div>
                     <div class="form-group">
-                        <label><i class="fab fa-whatsapp text-success"></i> Link WhatsApp</label>
-                        <input type="text" name="social_whatsapp" class="form-control" value="<?= $social_whatsapp ?>" placeholder="https://wa.me/628...">
+                        <label><i class="fab fa-whatsapp text-success"></i> Nomor WhatsApp</label>
+                        <input type="text" name="social_whatsapp" class="form-control" value="<?= $social_whatsapp ?>" placeholder="Contoh: 081234567890">
+                        <small class="text-muted">Cukup masukkan nomor handphone (contoh: 0812...). Sistem akan otomatis membuat link WhatsApp-nya.</small>
                     </div>
                 </div>
             </div>
